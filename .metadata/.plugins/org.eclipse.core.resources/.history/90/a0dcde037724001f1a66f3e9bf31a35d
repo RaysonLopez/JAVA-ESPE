@@ -1,0 +1,10 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+public class main {
+	public static void main(String[] args) {
+		
+	}
+	public static MenuPrincipal() {
+		Autor autor=new Autor();
+	}
+}

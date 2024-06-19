@@ -1,0 +1,2 @@
+{Cantidad a comprar: 2.0 Precio de los productos: 2.2}Producto con IVA: 4.928000000000001Producto sin IVA: 4.4}
+{Nombre Ingresado: andresNombre Ingresado: jordanNombre Ingresado: miliastras}

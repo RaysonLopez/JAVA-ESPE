@@ -1,0 +1,28 @@
+package com.mycompany.Prueba2JSON;
+
+import java.util.Scanner;
+
+public class LibroDigital extends Libro{
+	String version;
+	String extension;
+	public LibroDigital(String titulo, String autor, long ISBN, String editorial,String version,String extension) {
+		super(titulo, autor, ISBN, editorial);
+		// TODO Auto-generated constructor stub
+		this.version=version;
+		this.extension=extension;
+	}
+	public void IngresarDatos() {
+		super.IngresoDatos();
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Ingresa la version del libro");
+		this.version=scanner.nextLine();
+		System.out.println("ingresa la extension del libro");
+		this.version=scanner.nextLine();
+	}
+
+	@Override
+	public void MostrarDatos() {
+		super.MostrarDatos();
+		System.out.println("Version: "+version+"Extension: "+extension);
+	}
+}

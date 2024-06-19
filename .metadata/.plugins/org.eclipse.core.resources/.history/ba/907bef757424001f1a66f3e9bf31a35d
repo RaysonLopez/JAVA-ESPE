@@ -1,0 +1,17 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.util.ArrayList;
+
+public class Autor extends Persona{
+	private ArrayList<String>librosEscritos;
+	public Autor(String nombre, String apellido) {
+		super(nombre,apellido);
+		this.librosEscritos=new ArrayList<>();
+	}
+	public void agregarLibro(String libro) {
+		librosEscritos.add(libro);
+	}
+	public ArrayList<String> getLibrosEscritos(){
+		return librosEscritos;
+	}
+}

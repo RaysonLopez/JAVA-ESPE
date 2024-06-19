@@ -1,0 +1,16 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+import java.util.*;
+public class Persona {
+	private String nombres,apellidos,telf,CI;
+	public Persona(String nombres,String apellidos,String telf,String CI) {
+		this.nombres=nombres;
+		this.apellidos=apellidos;
+		this.telf=telf;
+		this.CI=CI;
+	}
+	public void IngresarDatos() {
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Ingresa los nombres de la persona");
+		this.nombres=scanner.nextLine();
+	}
+}

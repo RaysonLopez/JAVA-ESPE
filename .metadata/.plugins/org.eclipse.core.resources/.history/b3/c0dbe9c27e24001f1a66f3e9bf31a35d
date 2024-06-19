@@ -1,0 +1,77 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.util.Scanner;
+
+public class Persona {
+    private String nombre;
+    private String apellido;
+    private long CI;
+
+    public Persona(String nombre, String apellido) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public long getCI() {
+        return CI;
+    }
+
+    public void setCI(long CI) {
+        this.CI = CI;
+    }
+
+    public void IngresarDatos() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingresa el nombre:");
+        this.nombre = scanner.nextLine();
+
+        System.out.println("Ingresa el apellido:");
+        this.apellido = scanner.nextLine();
+
+        System.out.println("Ingresa la CI:");
+        
+        // Consumir el salto de línea pendiente
+        scanner.nextLine();  
+
+        boolean entradaValida = false;
+        while (!entradaValida) {
+            try {
+                this.CI = Long.parseLong(scanner.nextLine());
+                String citemp = String.valueOf(CI);
+                if (citemp.length() == 10) {
+                    entradaValida = true;
+                } else {
+                    throw new IllegalArgumentException("La CI debe tener 10 dígitos.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Formato incorrecto. Debe ser un número.");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        scanner.close();
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
+    }
+}

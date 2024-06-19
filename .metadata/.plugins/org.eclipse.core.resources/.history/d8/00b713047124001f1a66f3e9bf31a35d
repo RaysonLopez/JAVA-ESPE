@@ -1,0 +1,24 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.io.FileWriter;
+import java.util.ArrayList;
+
+public class Lector extends Persona{
+	private ArrayList<String> librosPrestados;
+	public Lector(String nombre,String apellido) {
+		super(nombre,apellido);
+	this.librosPrestados=new ArrayList<>();
+	}
+public void prestarLibros(String libro) {
+	librosPrestados.add(libro);
+}
+public ArrayList<String> getLibrosPrestados(){
+	return librosPrestados;
+}
+	publi void escribirJSON(ArrayList<Autor>autores,String archivo) {
+		try(FileWriter file=new FileWriter("archivos.json")){
+			file.write("-------Libros-------");
+			file.write(autores);
+		}
+	}
+}

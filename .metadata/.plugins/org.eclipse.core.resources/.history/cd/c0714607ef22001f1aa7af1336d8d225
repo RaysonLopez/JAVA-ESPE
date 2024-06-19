@@ -1,0 +1,43 @@
+package com.mycompany.Prueba2JSON;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+import org.json.simple.JSONObject;
+
+public class LibroDigital extends Libro{
+	String version;
+	String extension;
+	public LibroDigital(String titulo, String autor, long ISBN, String editorial,String version,String extension) {
+		super(titulo, autor, ISBN, editorial);
+		// TODO Auto-generated constructor stub
+		this.version=version;
+		this.extension=extension;
+	}
+	public void IngresarDatos() {
+		super.IngresoDatos();
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Ingresa la version del libro");
+		this.version=scanner.nextLine();
+		System.out.println("ingresa la extension del libro");
+		this.version=scanner.nextLine();
+	}
+
+	@Override
+	public void MostrarDatos() {
+		super.MostrarDatos();
+		System.out.println("Version: "+version+"Extension: "+extension);
+	}
+	public void DatosALJsonLibroDigital(LibroDigital libro) {
+		JSONObject jsonObject=new JSONObject();
+		jsonObject.put("titulo: ",libro.getTitulo());
+		jsonObject.put("autor: ",libro.getAutor());
+		try(FileWriter file=new FileWriter("archivosLibroD")){
+			file.write(jsonObject.toJSONString());
+			file.flush();
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

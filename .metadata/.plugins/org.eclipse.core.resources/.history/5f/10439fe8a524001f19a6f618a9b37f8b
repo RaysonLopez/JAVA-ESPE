@@ -1,0 +1,11 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+public class P1PractivaEvaLopezRayson {
+	public static void main(String[] args) {
+		Administrador admin = new Administrador("Juan", "Perez", "123456789", "0011223344");
+        admin.IngresarDatos();
+        admin.DatosCSV();
+        admin.MostrarDatosCSV();
+
+	}
+}

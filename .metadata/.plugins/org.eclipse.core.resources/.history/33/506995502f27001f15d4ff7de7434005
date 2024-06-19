@@ -1,0 +1,75 @@
+package com.mycompany.P1Eva5LopezRayson_Mejorada;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class Paciente_LopezRayson extends Personal_LopezRayson {
+    private String diagnostico;
+    private String nombresDoctor;
+    private Scanner sc;
+
+    // Constructor with parameters
+    public Paciente_LopezRayson(String names, String email, String CI, String diagnostico, String nombresDoctor) {
+        super(names, CI, email);
+        this.diagnostico = diagnostico;
+        this.nombresDoctor = nombresDoctor;
+        this.sc = new Scanner(System.in);
+    }
+
+    // Default constructor
+    public Paciente_LopezRayson() {
+        this.sc = new Scanner(System.in);
+    }
+
+    // Getter for diagnostico
+    public String getDiagnostico() {
+        return diagnostico;
+    }
+
+    // Setter for diagnostico
+    public void setDiagnostico(String diagnostico) {
+        this.diagnostico = diagnostico;
+    }
+
+    // Getter for nombresDoctor
+    public String getNombresDoctor() {
+        return nombresDoctor;
+    }
+
+    // Setter for nombresDoctor
+    public void setNombresDoctor(String nombresDoctor) {
+        this.nombresDoctor = nombresDoctor;
+    }
+
+    // Method to input data
+    @Override
+    public void IngresarDatos() {
+        super.IngresarDatos();
+        System.out.println("Ingrese el diagnostico:");
+        this.diagnostico = sc.nextLine();
+        System.out.println("Ingresa el nombre del doctor:");
+        this.nombresDoctor = sc.nextLine();
+    }
+
+    // Method to display data
+    @Override
+    public void MostrarDatos() {
+        super.MostrarDatos();
+        System.out.println("Diagnostico: " + diagnostico);
+        System.out.println("Doctor que diagnostica: " + nombresDoctor);
+    }
+
+    // Method to write patient data to a CSV file
+    public void IngresarDatosCSV() {
+        try (BufferedWriter wr = new BufferedWriter(new FileWriter("datos.csv", true))) {
+            wr.write("Paciente: " + getNames() + ", Cedula: " + getCI() + ", Email: " + getEmail() + ", Diagnostico: "
+                    + diagnostico + ", Doctor: " + nombresDoctor);
+            wr.newLine();
+            wr.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}

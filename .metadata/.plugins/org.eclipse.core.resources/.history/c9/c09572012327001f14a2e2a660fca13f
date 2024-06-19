@@ -1,0 +1,18 @@
+package com.mycompany.P1Eva5LopezRayson_Mejorada;
+
+import java.util.Scanner;
+
+public class elMain {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Doctor doctor=new Doctor();
+		System.out.println("Ingreso Hospital");
+		System.out.println("1. Ingreso Doctor");
+		System.out.println("2. Ingreso Paciente");
+		char OPC=sc.next().charAt(0);
+		switch(OPC) {
+		case '1':
+			
+		}
+	}
+}

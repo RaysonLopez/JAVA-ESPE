@@ -1,0 +1,86 @@
+package com.mycompany.P1Eva5LopezRayson_Mejorada;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Doctor_LopezRayson extends Personal_LopezRayson {
+    private String codigo;
+    private double valorHoras;
+    private int cantidadHoras;
+    private double sueldo;
+    private Scanner sc;
+    private ArrayList<Paciente_LopezRayson> pacientes;
+
+    public Doctor_LopezRayson(String names, String CI, String email, String codigo, double valorHoras,
+            int cantidadHoras) {
+        super(names, CI, email);
+        this.codigo = codigo;
+        this.valorHoras = valorHoras;
+        this.cantidadHoras = cantidadHoras;
+        this.pacientes = new ArrayList<>();
+        this.sc = new Scanner(System.in);
+    }
+
+    public Doctor_LopezRayson() {
+        this.pacientes = new ArrayList<>();
+        this.sc = new Scanner(System.in);
+    }
+
+    @Override
+    public void IngresarDatos() {
+        System.out.println("Ingresa el codigo");
+        while (true) {
+            codigo = sc.nextLine();
+            if (codigo.length() == 10 && codigo.matches("^\\d+$")) {
+                break;
+            } else {
+                System.out.println("Error. Ingresa nuevamente un código de 10 dígitos numéricos.");
+            }
+        }
+
+        System.out.println("Ingresa el valor por hora del doctor");
+        while (true) {
+            valorHoras = sc.nextDouble();
+            sc.nextLine(); // consume newline
+            if (valorHoras >= 0 && valorHoras <= 25000) {
+                break;
+            } else {
+                System.out.println("Error. Ingresa un valor entre 0 y 25000.");
+            }
+        }
+
+        System.out.println("Ingresa la cantidad de horas");
+        while (true) {
+            cantidadHoras = sc.nextInt();
+            sc.nextLine(); // consume newline
+            if (cantidadHoras >= 0 && cantidadHoras <= 500) {
+                break;
+            } else {
+                System.out.println("Error. Ingresa una cantidad entre 0 y 500.");
+            }
+        }
+
+        CalcularSalario();
+    }
+
+    public void CalcularSalario() {
+        this.sueldo = cantidadHoras * valorHoras;
+        System.out.println("El sueldo del doctor es: " + sueldo);
+    }
+
+    public void IngresarPacienteArray() {
+        System.out.println("Ingresa los datos del paciente:");
+        Paciente_LopezRayson paciente = new Paciente_LopezRayson();
+        paciente.IngresarDatos(); 
+        pacientes.add(paciente);
+    }
+
+    @Override
+    public void MostrarDatos() {
+        super.MostrarDatos();
+        System.out.println("Codigo: " + codigo);
+        System.out.println("Valor Hora: " + valorHoras);
+        System.out.println("Cantidad de Horas: " + cantidadHoras);
+        System.out.println("Sueldo: " + sueldo);
+    }
+}

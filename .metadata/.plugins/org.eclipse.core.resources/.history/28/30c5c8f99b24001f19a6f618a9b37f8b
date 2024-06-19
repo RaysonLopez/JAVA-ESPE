@@ -1,0 +1,92 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.*;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Lector extends Persona {
+    private ArrayList<String> librosPrestados;
+    private String librosLeidos;
+    private List<String> librosDisponibles;
+
+    public Lector(String nombre, String apellido,String CI) {
+        super(nombre, apellido,CI);
+        this.librosPrestados = new ArrayList<>();
+        this.librosDisponibles = new ArrayList<>(); // Inicializamos para evitar NullPointerException
+    }
+
+    public void prestarLibros(String libro) {
+        librosPrestados.add(libro);
+    }
+
+    public ArrayList<String> getLibrosPrestados() {
+        return librosPrestados;
+    }
+
+    @Override
+    public void IngresarDatos() {
+        Scanner scanner = new Scanner(System.in);
+        super.IngresarDatos();
+        System.out.println("Ingresa los libros que has leído:");
+        this.librosLeidos = scanner.nextLine();
+        prestarLibros(librosLeidos);
+    }
+
+    public void mostrarLibros() {
+        System.out.println("Libros disponibles:");
+        for (int i = 0; i < librosDisponibles.size(); i++) {
+            System.out.println((i + 1) + ". " + librosDisponibles.get(i));
+        }
+    }
+
+    public void prestarLibros() {
+        librosDisponibles = leerJSON();
+        if (librosDisponibles == null || librosDisponibles.isEmpty()) {
+            System.out.println("No hay libros disponibles para prestar.");
+            return;
+        }
+
+        mostrarLibros();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el número del libro que desea prestar:");
+        int opcion = scanner.nextInt();
+        scanner.nextLine(); // Consumir el salto de línea
+
+        if (opcion < 1 || opcion > librosDisponibles.size()) {
+            System.out.println("Opción inválida.");
+            return;
+        }
+
+        String libroPrestado = librosDisponibles.remove(opcion - 1);
+        prestarLibros(libroPrestado);
+        System.out.println("Has prestado el libro: " + libroPrestado);
+        escribirJSON(librosDisponibles);
+    }
+
+    public void escribirJSON(List<String> libros) {
+        String archivo = "libros.json";
+        Gson gson = new Gson();
+        try (FileWriter writer = new FileWriter(archivo)) {
+            gson.toJson(libros, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<String> leerJSON() {
+        String archivo = "libros.json";
+        Gson gson = new Gson();
+        try (Reader reader = new FileReader(archivo)) {
+            Type tipoListaLibros = new TypeToken<List<String>>() {}.getType();
+            return gson.fromJson(reader, tipoListaLibros);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ArrayList<>();
+        }
+    }
+}

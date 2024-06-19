@@ -1,0 +1,16 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.util.ArrayList;
+
+public class Lector extends Persona{
+	private ArrayList<String> librosPrestados;
+	public Lector(String nombre,String apellido)
+	super(nombre,apellido);
+	this.librosPrestados=new ArrayList<>();
+}
+public void prestarLibros(String libro) {
+	librosPrestados.add(libro);
+}
+public ArrayList<String> getLibrosPrestados(){
+	return librosPrestados;
+}

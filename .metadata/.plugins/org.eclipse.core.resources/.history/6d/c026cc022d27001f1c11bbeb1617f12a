@@ -1,0 +1,35 @@
+package com.mycompany.P1Eva5LopezRayson_Mejorada;
+
+import java.util.Scanner;
+
+public class elMain {
+	
+	private static final String OPC = null;
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Doctor_LopezRayson doctor=new Doctor_LopezRayson();
+		Paciente_LopezRayson paciente=new Paciente_LopezRayson();
+		do {
+		System.out.println("Ingreso Hospital");
+		System.out.println("1. Ingreso Doctor");
+		System.out.println("2. Ingreso Paciente");
+		System.out.println("3. Salir");
+		char OPC=sc.next().charAt(0);
+		switch(OPC) {
+		case '1':
+			doctor.IngresarDatos();
+			doctor.DatosPacienteAlCSV();
+		break;
+		case '2':
+			paciente.IngresarDatos();
+			paciente.IngresarDatosCSV();
+			break;
+		case '3':
+			System.out.println("saliendo................");
+			break;
+			default:System.out.println("Ingresa nuevamente");
+		}
+		}while(OPC=="3");
+	}
+}

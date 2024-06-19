@@ -1,0 +1,10 @@
+package com.mycompany.P1Eva5LopezRayson_Mejorada;
+
+public class elMain {
+	public static void main(String[] args) {
+		System.out.println("Ingreso Hospital");
+		System.out.println("1. Ingreso Doctor");
+		System.out.println("2. Ingreso Paciente");
+		char OPC=sc.next().charAt(0);
+	}
+}

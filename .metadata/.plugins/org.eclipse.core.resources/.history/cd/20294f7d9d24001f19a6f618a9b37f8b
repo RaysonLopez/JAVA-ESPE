@@ -1,0 +1,38 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+import java.util.*;
+import java.io.*;
+public class Persona {
+	private String nombres,apellidos,telf,CI;
+	public Persona(String nombres,String apellidos,String telf,String CI) {
+		this.nombres=nombres;
+		this.apellidos=apellidos;
+		this.telf=telf;
+		this.CI=CI;
+	}
+	public void IngresarDatos() {
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Ingresa los nombres de la persona");
+		this.nombres=scanner.nextLine();
+		System.out.println("Ingresa los apellidos de la persona");
+		this.apellidos=scanner.nextLine();
+		System.out.println("Ingresa el telf de la persona");
+		telf=scanner.nextLine();
+		while( !(telf.length()==10)&&!telf.matches("\\d{10}")){
+			System.out.println("Ingreso incorrecto, intentalo de nuevo");
+			scanner.next();
+		}
+		this.telf=scanner.nextLine();
+		System.out.println("ingrese la cedula de la persona");
+		CI=scanner.nextLine();
+		while(!(CI.length()==10)&&CI.matches("\\d{10}")) {
+			System.out.println("Ingreso invalido, intentalo nuevamente");
+			scanner.next();
+		}
+		this.CI=scanner.nextLine();
+	}
+	public void MostrarDatos() {
+		System.out.println("Nombres: "+nombres);
+		System.out.println("Apellidos: "+apellidos);
+		System.out.println("telf: "+telf);
+	}
+}

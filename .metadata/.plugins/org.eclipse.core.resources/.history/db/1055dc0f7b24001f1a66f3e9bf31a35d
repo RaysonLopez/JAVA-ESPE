@@ -1,0 +1,16 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Bibliotecaria extends Persona {
+	private List<String> librosDisponibles;
+	public Bibliotecaria(String nombre, String apellido) {
+		super(nombre, apellido);
+		this.librosDisponibles=new ArrayList<>();
+	}
+
+	
+	
+	
+}

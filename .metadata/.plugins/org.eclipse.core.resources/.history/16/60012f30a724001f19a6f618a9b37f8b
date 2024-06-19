@@ -1,0 +1,14 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+public class P1PractivaEvaLopezRayson {
+	public static void main(String[] args) {
+		Administrador admin = new Administrador(null,null, null, null);
+        admin.IngresarDatos();
+        admin.DatosCSV();
+        admin.MostrarDatosCSV();
+        Cliente cliente1 = new Cliente("Nombre1", "Apellido1", "123456789", "0011223344", "usuario1", "contrasenia1");
+        cliente.IngresarDatos();
+        cliente.DatosJSON();
+        cliente.LeerDatosJSON();
+	}
+}

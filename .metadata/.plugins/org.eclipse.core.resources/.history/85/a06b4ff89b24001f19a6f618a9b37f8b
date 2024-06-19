@@ -1,0 +1,80 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Bibliotecaria extends Persona {
+    private List<String> librosDisponibles;
+
+    public Bibliotecaria(String nombre, String apellido,String CI) {
+        super(nombre, apellido,CI);
+        this.librosDisponibles = new ArrayList<>();
+    }
+
+    // Método para agregar un libro a la lista de libros disponibles
+    public void agregarLibro(String libro) {
+        librosDisponibles.add(libro);
+        System.out.println("Libro agregado: " + libro);
+    }
+
+    // Método para eliminar un libro de la lista de libros disponibles
+    public void eliminarLibro(String libro) {
+        if (librosDisponibles.remove(libro)) {
+            System.out.println("Libro eliminado: " + libro);
+        } else {
+            System.out.println("Libro no encontrado: " + libro);
+        }
+    }
+
+    // Método para mostrar la lista de libros disponibles
+    public void mostrarLibros() {
+        if (librosDisponibles.isEmpty()) {
+            System.out.println("No hay libros disponibles.");
+        } else {
+            System.out.println("Libros disponibles:");
+            for (String libro : librosDisponibles) {
+                System.out.println(libro);
+            }
+        }
+    }
+
+    // Método para gestionar libros (agregar y eliminar a través de la consola)
+    public void gestionarLibros() {
+        Scanner scanner = new Scanner(System.in);
+        String opcion;
+
+        do {
+            System.out.println("\nGestionar Libros");
+            System.out.println("1. Agregar Libro");
+            System.out.println("2. Eliminar Libro");
+            System.out.println("3. Mostrar Libros");
+            System.out.println("4. Salir");
+            System.out.print("Elige una opción: ");
+            opcion = scanner.nextLine();
+
+            switch (opcion) {
+                case "1":
+                    System.out.print("Ingrese el título del libro a agregar: ");
+                    String libroAgregar = scanner.nextLine();
+                    agregarLibro(libroAgregar);
+                    break;
+                case "2":
+                    System.out.print("Ingrese el título del libro a eliminar: ");
+                    String libroEliminar = scanner.nextLine();
+                    eliminarLibro(libroEliminar);
+                    break;
+                case "3":
+                    mostrarLibros();
+                    break;
+                case "4":
+                    System.out.println("Saliendo de la gestión de libros.");
+                    break;
+                default:
+                    System.out.println("Opción no válida. Intenta nuevamente.");
+            }
+        } while (!opcion.equals("4"));
+        
+        scanner.close();
+    }
+}

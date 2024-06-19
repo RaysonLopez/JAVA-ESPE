@@ -1,0 +1,5 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+import java.util.*;
+public class Administrador extends Persona{
+	
+}

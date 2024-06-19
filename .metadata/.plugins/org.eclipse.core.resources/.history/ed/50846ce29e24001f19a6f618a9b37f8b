@@ -1,0 +1,19 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+import java.util.*;
+public class Cliente extends Persona{
+	private String usuario,contrasenia;
+	private ArrayList<String>clientes;
+	public Cliente(String nombres,String apellidos,String telf,String CI,String usuario,String contrasenia) {
+		super(nombres,apellidos,telf,CI);
+		this.clientes=new ArrayList<>();
+	}
+	@Override
+	public void IngresarDatos() {
+		super.IngresarDatos();
+		System.out.println("Ingrese el usuario");
+		this.usuario
+	}
+	public void IngresarLista(Cliente cliente) {
+		clientes.addAll(cliente);
+	}
+}

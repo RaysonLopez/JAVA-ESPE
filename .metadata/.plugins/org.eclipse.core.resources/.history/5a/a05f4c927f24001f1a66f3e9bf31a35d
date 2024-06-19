@@ -1,0 +1,21 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.util.Scanner;
+
+public class main {
+	public static void main(String[] args) {
+		MenuPrincipal();
+	}
+	public static void  MenuPrincipal() {
+		Scanner scanner= new Scanner(System.in);
+		Autor autor=new Autor(null, null, null, null);
+		Lector lector=new Lector(null, null, null);
+		Bibliotecaria bibliotecaria=new Bibliotecaria(null, null, null);
+		autor.IngresarDatos();
+		autor.leerCSV(null)
+		lector.IngresarDatos();
+		System.out.println("Ingresa el libro");
+		String libro=scanner.nextLine();
+		bibliotecaria.agregarLibro(libro);
+	}
+}

@@ -1,0 +1,12 @@
+package com.mycompany.Prueba2JSON;
+
+public class LibroDigital extends Libro{
+	String version;
+	String extension;
+	public LibroDigital(String titulo, String autor, long ISBN, String editorial) {
+		super(titulo, autor, ISBN, editorial);
+		// TODO Auto-generated constructor stub
+	}
+
+	
+}

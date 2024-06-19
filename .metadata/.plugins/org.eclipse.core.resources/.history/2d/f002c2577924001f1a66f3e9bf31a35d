@@ -1,0 +1,23 @@
+package com.mycompany.P1PracticaEvaLopezRayson;
+
+import java.util.Scanner;
+
+public class libro {
+	private String titulo;
+	private String ISBN;
+	public libro(String titulo,String ISBN) {
+		this.ISBN=ISBN;
+		this.titulo=titulo;
+	}
+	public void IngresarDatos() {
+		Scanner scanner=new Scanner(SYstem.in);
+		System.out.println("Ingresa el titulo del libro");
+		this.titulo=scanner.nextLine();
+		System.out.println("Ingresa el ISBN");
+		while(!scanner.nextLong()) {
+			System.out.println("Ingreso incorrecto, intenta nuevamente");
+			scanner.next();
+		}
+		this.ISBN=scanner.nextLong();
+	}
+}
