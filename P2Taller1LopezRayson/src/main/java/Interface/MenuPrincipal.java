@@ -30,7 +30,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         errorPhone.setVisible(false);
         errorEmail.setVisible(false);
         
-        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/BackgroundImages/Fondo3.gif"));
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/BackgroundImages/FondoMenu1.gif"));
         Icon fondo1=new ImageIcon(imagenFondo.getImage().getScaledInstance(fondo.getWidth(), fondo.getHeight(),Image.SCALE_DEFAULT));
         fondo.setIcon(fondo1);
         this.repaint();
@@ -39,6 +39,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             new String[]{"Nombre y Apellido", "ID", "Telefono","Email"}
         );
         dataTable.setModel(tableModel);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -70,6 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         deleteTable = new javax.swing.JButton();
         saveTable = new javax.swing.JButton();
         ModificateTable = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         MenuBaseDatos = new javax.swing.JMenuBar();
         MongolBDMenu = new javax.swing.JMenu();
@@ -81,6 +83,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         exitMenuAdd = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -98,15 +101,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(345, 35, 498, 231));
 
-        NombresLabel.setForeground(new java.awt.Color(255, 255, 255));
         NombresLabel.setText("Nombres Completos");
         jPanel2.add(NombresLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 164, -1));
 
-        idLabel.setForeground(new java.awt.Color(255, 255, 255));
         idLabel.setText("ID");
         jPanel2.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 37, -1));
 
-        emailLabel.setForeground(new java.awt.Color(255, 255, 255));
         emailLabel.setText("Email");
         jPanel2.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 183, -1));
 
@@ -114,7 +114,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         errorNames.setText("Error, tiene que tener un nombre y un apellido");
         jPanel2.add(errorNames, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 30));
 
-        telfLabel.setForeground(new java.awt.Color(255, 255, 255));
         telfLabel.setText("Telefono");
         jPanel2.add(telfLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 183, -1));
 
@@ -151,6 +150,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 183, -1));
 
+        phone.setForeground(new java.awt.Color(255, 255, 255));
         phone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 phoneActionPerformed(evt);
@@ -164,7 +164,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
-        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 300, -1, -1));
+        jPanel2.add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
 
         deleteTable.setText("ELIMINAR");
         deleteTable.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +172,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 deleteTableActionPerformed(evt);
             }
         });
-        jPanel2.add(deleteTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, -1, -1));
+        jPanel2.add(deleteTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
 
         saveTable.setText("GUARDAR");
         saveTable.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +190,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(ModificateTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, -1, -1));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackgroundImages/Fondo3.gif"))); // NOI18N
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setOpaque(true);
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 270, 280));
+
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackgroundImages/FondoMenu1.gif"))); // NOI18N
         jPanel2.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 900, 420));
 
         MenuBaseDatos.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -259,7 +263,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Validar los campos
     boolean valid = true;
-
+    
     if (!nombres.matches("[A-Za-z]+\\s[A-Za-z]+")) {
         errorNames.setText("Error: tiene que tener un nombre y un apellido");
         errorNames.setVisible(true);
@@ -294,15 +298,33 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Si todos los campos son válidos, agregar a la tabla
     if (valid) {
-        String[] camposT = {nombres, ID, telf, mail};
         DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-        tableModel.addRow(camposT);
-        
-        // Limpiar los campos de entrada
-        names.setText("");
-        id.setText("");
-        phone.setText("");
-        email.setText("");
+           int rowCount = tableModel.getRowCount();
+           boolean duplicate = false;
+
+           for (int i = 0; i < rowCount; i++) {
+               String existingID = tableModel.getValueAt(i, 1).toString();
+               String existingPhone = tableModel.getValueAt(i, 2).toString();
+               String existingEmail = tableModel.getValueAt(i, 3).toString();
+
+               if (ID.equals(existingID) || telf.equals(existingPhone) || mail.equals(existingEmail)) {
+                   duplicate = true;
+                   break;
+               }
+           }
+
+           if (duplicate) {
+               JOptionPane.showMessageDialog(this, "Error: ID, teléfono o email ya existen en la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
+           } else {
+               String[] camposT = {nombres, ID, telf, mail};
+               tableModel.addRow(camposT);
+
+               // Limpiar los campos de entrada
+               names.setText("");
+               id.setText("");
+               phone.setText("");
+               email.setText("");
+           }
     }
     }//GEN-LAST:event_saveTableActionPerformed
 
@@ -472,7 +494,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Mostrar el diálogo
     dialog.setVisible(true);
 
-    System.exit(0);
+    this.dispose();
     }
     /**
      * @param args the command line arguments
@@ -529,6 +551,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel fondo;
     private javax.swing.JTextField id;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem2;

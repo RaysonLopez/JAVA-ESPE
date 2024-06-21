@@ -1,6 +1,9 @@
 package Interface;
 
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /*
@@ -13,8 +16,6 @@ import javax.swing.JOptionPane;
  * @author Rayson
  */
 public class Login extends javax.swing.JFrame {
-    private String userId;
-    private String userPassword;
         /**
      * Creates new form Inferdaz
      */
@@ -22,6 +23,11 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         errorId.setVisible(false);
         errorPassword.setVisible(false);
+        
+        ImageIcon imagenFondo = new ImageIcon(getClass().getResource("/BackgroundImages/FondoLogin.gif"));
+        Icon fondo1=new ImageIcon(imagenFondo.getImage().getScaledInstance(FONDO.getWidth(), FONDO.getHeight(),Image.SCALE_DEFAULT));
+        FONDO.setIcon(fondo1);
+        setLocationRelativeTo(null);
         
     }
 
@@ -35,27 +41,63 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         id = new javax.swing.JTextField();
-        ButtomIniciar = new javax.swing.JButton();
         login = new javax.swing.JLabel();
         password = new javax.swing.JPasswordField();
         errorId = new javax.swing.JLabel();
-        exit = new javax.swing.JButton();
         errorPassword = new javax.swing.JLabel();
+        passwordL = new javax.swing.JLabel();
+        usuarioL = new javax.swing.JLabel();
+        ButtomIniciar = new javax.swing.JButton();
+        exit = new javax.swing.JButton();
+        fondoL = new javax.swing.JLabel();
         FONDO = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setLocation(new java.awt.Point(1200, 800));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        id.setText("id");
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 idActionPerformed(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, 140, -1));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 180, -1));
 
-        ButtomIniciar.setBackground(new java.awt.Color(255, 242, 156));
+        login.setFont(new java.awt.Font("OCR A Extended", 3, 36)); // NOI18N
+        login.setForeground(new java.awt.Color(255, 255, 255));
+        login.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        login.setText("INICIO DE SESION");
+        login.setToolTipText("");
+        login.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, 400, 30));
+
+        password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passwordActionPerformed(evt);
+            }
+        });
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 180, -1));
+
+        errorId.setFont(new java.awt.Font("Segoe UI Emoji", 3, 12)); // NOI18N
+        errorId.setForeground(new java.awt.Color(255, 51, 102));
+        errorId.setText("ID Invalido");
+        getContentPane().add(errorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 150, 30));
+
+        errorPassword.setBackground(new java.awt.Color(255, 51, 51));
+        errorPassword.setFont(new java.awt.Font("Segoe UI Emoji", 2, 12)); // NOI18N
+        errorPassword.setForeground(new java.awt.Color(255, 51, 51));
+        errorPassword.setText("Password Incorrecta");
+        getContentPane().add(errorPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, 130, 20));
+
+        passwordL.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        passwordL.setText("PASSWORD");
+        getContentPane().add(passwordL, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, -1, -1));
+
+        usuarioL.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
+        usuarioL.setText("USUARIO");
+        getContentPane().add(usuarioL, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+
+        ButtomIniciar.setBackground(new java.awt.Color(204, 203, 255));
         ButtomIniciar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
         ButtomIniciar.setText("Iniciar");
         ButtomIniciar.setToolTipText("");
@@ -64,30 +106,9 @@ public class Login extends javax.swing.JFrame {
                 ButtomIniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(ButtomIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+        getContentPane().add(ButtomIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, 130, 40));
 
-        login.setFont(new java.awt.Font("OCR A Extended", 3, 36)); // NOI18N
-        login.setForeground(new java.awt.Color(255, 255, 255));
-        login.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        login.setText("LOGIN");
-        login.setToolTipText("");
-        login.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 250, 120, 30));
-
-        password.setText("jPasswordField1");
-        password.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordActionPerformed(evt);
-            }
-        });
-        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 170, 140, -1));
-
-        errorId.setFont(new java.awt.Font("Segoe UI Emoji", 1, 12)); // NOI18N
-        errorId.setForeground(new java.awt.Color(255, 51, 102));
-        errorId.setText("ID Invalido");
-        getContentPane().add(errorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 140, 280, 30));
-
-        exit.setBackground(new java.awt.Color(255, 242, 156));
+        exit.setBackground(new java.awt.Color(205, 204, 255));
         exit.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         exit.setText("Salir");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -95,17 +116,15 @@ public class Login extends javax.swing.JFrame {
                 exitActionPerformed(evt);
             }
         });
-        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, -1, -1));
+        getContentPane().add(exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 110, 40));
 
-        errorPassword.setBackground(new java.awt.Color(255, 51, 153));
-        errorPassword.setFont(new java.awt.Font("Segoe UI Emoji", 2, 12)); // NOI18N
-        errorPassword.setForeground(new java.awt.Color(255, 51, 102));
-        errorPassword.setText("Password Incorrecta");
-        getContentPane().add(errorPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 130, 20));
+        fondoL.setBackground(new java.awt.Color(202, 179, 224));
+        fondoL.setOpaque(true);
+        getContentPane().add(fondoL, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 90, 220, 190));
 
-        FONDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackgroundImages/6b71e0c74e6b42f53de0cefb7884f704_gif (1920×1080).gif"))); // NOI18N
+        FONDO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/BackgroundImages/FondoLogin.gif"))); // NOI18N
         FONDO.setDoubleBuffered(true);
-        getContentPane().add(FONDO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 790, 400));
+        getContentPane().add(FONDO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 650, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -117,7 +136,8 @@ public class Login extends javax.swing.JFrame {
     private void ButtomIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtomIniciarActionPerformed
     // Obtener los valores ingresados
     String enteredId = id.getText().trim();
-    String enteredPassword = new String(password.getPassword()).trim();
+    char[] passwordArray = password.getPassword();
+    String enteredPassword = new String(passwordArray).trim();
 
     // Validar el campo ID
     if (enteredId.isEmpty()) {
@@ -133,26 +153,24 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Validar el campo contraseña
-    if (enteredPassword.isEmpty()) {
+    if (passwordArray.length == 0) {
         errorPassword.setText("La contraseña no puede estar vacía");
         errorPassword.setVisible(true);
-        return; // Salir del método si la contraseña está vacía
     } else {
         errorPassword.setVisible(false);
     }
 
     // Verificar las credenciales ingresadas
-    if (enteredId.equals("1234567890") && enteredPassword.equals("password")) {
-        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso.", "Login", JOptionPane.INFORMATION_MESSAGE);
-        abrirMenuPrincipal(); // Método para abrir la siguiente ventana (debes implementarlo)
-        
-        // Limpiar los campos de texto
-        id.setText("");
-        password.setText("");
-    } else {
-        JOptionPane.showMessageDialog(this, "ID o contraseña incorrecta", "Login", JOptionPane.ERROR_MESSAGE);
-        // Limpiar el campo de contraseña en caso de error
-        password.setText("");
+    if (!enteredId.isEmpty() && enteredId.matches("\\d{10}") && !enteredPassword.isEmpty()) {
+        if (enteredId.equals("1234567890") && enteredPassword.equals("password")) {
+            JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso.", "Login", JOptionPane.INFORMATION_MESSAGE);
+            abrirMenuPrincipal();
+            id.setText("");
+            password.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "ID o contraseña incorrecta", "Login", JOptionPane.ERROR_MESSAGE);
+            password.setText("");
+        }
     }
     }//GEN-LAST:event_ButtomIniciarActionPerformed
 
@@ -212,8 +230,11 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel errorId;
     private javax.swing.JLabel errorPassword;
     private javax.swing.JButton exit;
+    private javax.swing.JLabel fondoL;
     private javax.swing.JTextField id;
     private javax.swing.JLabel login;
     private javax.swing.JPasswordField password;
+    private javax.swing.JLabel passwordL;
+    private javax.swing.JLabel usuarioL;
     // End of variables declaration//GEN-END:variables
 }
