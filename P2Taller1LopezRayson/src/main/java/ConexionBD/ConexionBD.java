@@ -4,10 +4,11 @@
  */
 package ConexionBD;
 
-import com.mongodb.ConnectionString;
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 /**
@@ -46,7 +47,34 @@ public class ConexionBD {
     public MongoDatabase getDatabase() {
         return database;
     }
+    public void leerDatos(){
+       // Realizar una consulta para obtener todos los documentos de la colección
+        FindIterable<Document> documents = collection.find();
 
+        // Obtener un cursor para iterar sobre los documentos
+        MongoCursor<Document> cursor = documents.iterator();
+        try {
+            while (cursor.hasNext()) {
+                Document doc = cursor.next();
+                // Extraer los campos relevantes del documento (nombre, id, telefono, email)
+                String nombre = doc.getString("nombre");
+                String id = doc.getString("id");
+                String telefono = doc.getString("telefono");
+                String email = doc.getString("email");
+
+                // Aquí puedes imprimir los datos o manejarlos según tus necesidades
+                System.out.println("Nombre: " + nombre);
+                System.out.println("ID: " + id);
+                System.out.println("Teléfono: " + telefono);
+                System.out.println("Email: " + email);
+                System.out.println("----------------------");
+            }
+        } finally {
+            // Cerrar el cursor correctamente
+            cursor.close();
+        }
+    } 
+    
     public void close() {
         if (mongoClient != null) {
             mongoClient.close();
