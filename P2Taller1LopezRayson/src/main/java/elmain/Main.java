@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package elmain;
-import Interface.Login;
+import Login.Vista.VistaLogin;
 /**
  *
  * @author Rayson
@@ -14,7 +14,7 @@ public class Main {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 // Crear una nueva instancia de la ventana de login y hacerla visible
-                new Login().setVisible(true);
+                new VistaLogin().setVisible(true);
             }
         });
     }

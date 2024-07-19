@@ -1,0 +1,252 @@
+[
+    {
+        "codigo": "P001",
+        "nombre": "Producto 1",
+        "precio": 76.11
+    },
+    {
+        "codigo": "P002",
+        "nombre": "Producto 2",
+        "precio": 66.88
+    },
+    {
+        "codigo": "P003",
+        "nombre": "Producto 3",
+        "precio": 33.12
+    },
+    {
+        "codigo": "P004",
+        "nombre": "Producto 4",
+        "precio": 44.95
+    },
+    {
+        "codigo": "P005",
+        "nombre": "Producto 5",
+        "precio": 79.25
+    },
+    {
+        "codigo": "P006",
+        "nombre": "Producto 6",
+        "precio": 88.17
+    },
+    {
+        "codigo": "P007",
+        "nombre": "Producto 7",
+        "precio": 15.88
+    },
+    {
+        "codigo": "P008",
+        "nombre": "Producto 8",
+        "precio": 53.81
+    },
+    {
+        "codigo": "P009",
+        "nombre": "Producto 9",
+        "precio": 67.57
+    },
+    {
+        "codigo": "P010",
+        "nombre": "Producto 10",
+        "precio": 75.01
+    },
+    {
+        "codigo": "P011",
+        "nombre": "Producto 11",
+        "precio": 84.57
+    },
+    {
+        "codigo": "P012",
+        "nombre": "Producto 12",
+        "precio": 69.14
+    },
+    {
+        "codigo": "P013",
+        "nombre": "Producto 13",
+        "precio": 61.53
+    },
+    {
+        "codigo": "P014",
+        "nombre": "Producto 14",
+        "precio": 67.44
+    },
+    {
+        "codigo": "P015",
+        "nombre": "Producto 15",
+        "precio": 61.01
+    },
+    {
+        "codigo": "P016",
+        "nombre": "Producto 16",
+        "precio": 15.63
+    },
+    {
+        "codigo": "P017",
+        "nombre": "Producto 17",
+        "precio": 76.11
+    },
+    {
+        "codigo": "P018",
+        "nombre": "Producto 18",
+        "precio": 73.68
+    },
+    {
+        "codigo": "P019",
+        "nombre": "Producto 19",
+        "precio": 52.3
+    },
+    {
+        "codigo": "P020",
+        "nombre": "Producto 20",
+        "precio": 22.22
+    },
+    {
+        "codigo": "P021",
+        "nombre": "Producto 21",
+        "precio": 47.1
+    },
+    {
+        "codigo": "P022",
+        "nombre": "Producto 22",
+        "precio": 37.68
+    },
+    {
+        "codigo": "P023",
+        "nombre": "Producto 23",
+        "precio": 84.14
+    },
+    {
+        "codigo": "P024",
+        "nombre": "Producto 24",
+        "precio": 86.53
+    },
+    {
+        "codigo": "P025",
+        "nombre": "Producto 25",
+        "precio": 94.97
+    },
+    {
+        "codigo": "P026",
+        "nombre": "Producto 26",
+        "precio": 50.18
+    },
+    {
+        "codigo": "P027",
+        "nombre": "Producto 27",
+        "precio": 25.99
+    },
+    {
+        "codigo": "P028",
+        "nombre": "Producto 28",
+        "precio": 57.46
+    },
+    {
+        "codigo": "P029",
+        "nombre": "Producto 29",
+        "precio": 12.35
+    },
+    {
+        "codigo": "P030",
+        "nombre": "Producto 30",
+        "precio": 72.11
+    },
+    {
+        "codigo": "P031",
+        "nombre": "Producto 31",
+        "precio": 75.08
+    },
+    {
+        "codigo": "P032",
+        "nombre": "Producto 32",
+        "precio": 70.39
+    },
+    {
+        "codigo": "P033",
+        "nombre": "Producto 33",
+        "precio": 16.41
+    },
+    {
+        "codigo": "P034",
+        "nombre": "Producto 34",
+        "precio": 47.75
+    },
+    {
+        "codigo": "P035",
+        "nombre": "Producto 35",
+        "precio": 40.51
+    },
+    {
+        "codigo": "P036",
+        "nombre": "Producto 36",
+        "precio": 52.87
+    },
+    {
+        "codigo": "P037",
+        "nombre": "Producto 37",
+        "precio": 90.09
+    },
+    {
+        "codigo": "P038",
+        "nombre": "Producto 38",
+        "precio": 42.3
+    },
+    {
+        "codigo": "P039",
+        "nombre": "Producto 39",
+        "precio": 78.14
+    },
+    {
+        "codigo": "P040",
+        "nombre": "Producto 40",
+        "precio": 17.29
+    },
+    {
+        "codigo": "P041",
+        "nombre": "Producto 41",
+        "precio": 85.77
+    },
+    {
+        "codigo": "P042",
+        "nombre": "Producto 42",
+        "precio": 16.3
+    },
+    {
+        "codigo": "P043",
+        "nombre": "Producto 43",
+        "precio": 81.96
+    },
+    {
+        "codigo": "P044",
+        "nombre": "Producto 44",
+        "precio": 86.6
+    },
+    {
+        "codigo": "P045",
+        "nombre": "Producto 45",
+        "precio": 57.18
+    },
+    {
+        "codigo": "P046",
+        "nombre": "Producto 46",
+        "precio": 30.54
+    },
+    {
+        "codigo": "P047",
+        "nombre": "Producto 47",
+        "precio": 72.69
+    },
+    {
+        "codigo": "P048",
+        "nombre": "Producto 48",
+        "precio": 68.31
+    },
+    {
+        "codigo": "P049",
+        "nombre": "Producto 49",
+        "precio": 51.3
+    },
+    {
+        "codigo": "P050",
+        "nombre": "Producto 50",
+        "precio": 95.92
+    }
+]

@@ -1,0 +1,127 @@
+[
+    {
+        "codigo": "P001",
+        "nombre": "Producto 1",
+        "precio": 28.09
+    },
+    {
+        "codigo": "P002",
+        "nombre": "Producto 2",
+        "precio": 84.77
+    },
+    {
+        "codigo": "P003",
+        "nombre": "Producto 3",
+        "precio": 80.95
+    },
+    {
+        "codigo": "P004",
+        "nombre": "Producto 4",
+        "precio": 50.95
+    },
+    {
+        "codigo": "P005",
+        "nombre": "Producto 5",
+        "precio": 94.93
+    },
+    {
+        "codigo": "P006",
+        "nombre": "Producto 6",
+        "precio": 55.39
+    },
+    {
+        "codigo": "P007",
+        "nombre": "Producto 7",
+        "precio": 29.08
+    },
+    {
+        "codigo": "P008",
+        "nombre": "Producto 8",
+        "precio": 48.71
+    },
+    {
+        "codigo": "P009",
+        "nombre": "Producto 9",
+        "precio": 89.07
+    },
+    {
+        "codigo": "P010",
+        "nombre": "Producto 10",
+        "precio": 17.61
+    },
+    {
+        "codigo": "P011",
+        "nombre": "Producto 11",
+        "precio": 50.62
+    },
+    {
+        "codigo": "P012",
+        "nombre": "Producto 12",
+        "precio": 13.2
+    },
+    {
+        "codigo": "P013",
+        "nombre": "Producto 13",
+        "precio": 71.2
+    },
+    {
+        "codigo": "P014",
+        "nombre": "Producto 14",
+        "precio": 76.93
+    },
+    {
+        "codigo": "P015",
+        "nombre": "Producto 15",
+        "precio": 71.83
+    },
+    {
+        "codigo": "P016",
+        "nombre": "Producto 16",
+        "precio": 48.4
+    },
+    {
+        "codigo": "P017",
+        "nombre": "Producto 17",
+        "precio": 80.09
+    },
+    {
+        "codigo": "P018",
+        "nombre": "Producto 18",
+        "precio": 31.42
+    },
+    {
+        "codigo": "P019",
+        "nombre": "Producto 19",
+        "precio": 20.69
+    },
+    {
+        "codigo": "P020",
+        "nombre": "Producto 20",
+        "precio": 62.08
+    },
+    {
+        "codigo": "P021",
+        "nombre": "Producto 21",
+        "precio": 53.34
+    },
+    {
+        "codigo": "P022",
+        "nombre": "Producto 22",
+        "precio": 94.12
+    },
+    {
+        "codigo": "P023",
+        "nombre": "Producto 23",
+        "precio": 85.59
+    },
+    {
+        "codigo": "P024",
+        "nombre": "Producto 24",
+        "precio": 71.61
+    },
+    {
+        "codigo": "P025",
+        "nombre": "Producto 25",
+        "precio": 71.17
+    }
+]

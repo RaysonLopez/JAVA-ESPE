@@ -1,0 +1,146 @@
+[
+    {
+        "Nombre": "Justin",
+        "Edad": 20,
+        "Genero": "Masculino",
+        "Cedula": "2350233512"
+    },
+    {
+        "Nombre": "Pablo",
+        "Edad": 20,
+        "Genero": "Masculino",
+        "Cedula": "1234567890"
+    },
+    {
+        "Nombre": "Jaime",
+        "Edad": 23,
+        "Genero": "Masculino",
+        "Cedula": "0805002441"
+    },
+    {
+        "Nombre": "Fernanda",
+        "Edad": 19,
+        "Genero": "Femenino",
+        "Cedula": "2300304637"
+    },
+    {
+        "Nombre": "Jhonder",
+        "Edad": 20,
+        "Genero": "Masculino",
+        "Cedula": "1720560620"
+    },
+    {
+        "Nombre": "Alex",
+        "Edad": 19,
+        "Genero": "Masculino",
+        "Cedula": "0805140209"
+    },
+    {
+        "Nombre": "Michael",
+        "Edad": 19,
+        "Genero": "Masculino",
+        "Cedula": "0933091796"
+    },
+    {
+        "Nombre": "Jefferson Mejia",
+        "Edad": 21,
+        "Genero": "Masculino",
+        "Cedula": "1317268876"
+    },
+    {
+        "Nombre": "Joel",
+        "Edad": 22,
+        "Genero": "Masculino",
+        "Cedula": "2350628141"
+    },
+    {
+        "Nombre": "Lisseth",
+        "Edad": 19,
+        "Genero": "Femenino",
+        "Cedula": "1723570832"
+    },
+    {
+        "Nombre": "Klay Manzanillas",
+        "Edad": 19,
+        "Genero": "Masculino",
+        "Cedula": "2400070906"
+    },
+    {
+        "Nombre": "Erick",
+        "Edad": 19,
+        "Genero": "Masculino",
+        "Cedula": "0150327260"
+    },
+    {
+        "Nombre": "Hector",
+        "Edad": 22,
+        "Genero": "Masculino",
+        "Cedula": "1750051235"
+    },
+    {
+        "Nombre": "Nereyda",
+        "Edad": 23,
+        "Genero": "Femenino",
+        "Cedula": "1751109735"
+    },
+    {
+        "Nombre": "Bruce",
+        "Edad": 19,
+        "Genero": "Masculino",
+        "Cedula": "2300446305"
+    },
+    {
+        "Nombre": "Justin",
+        "Edad": 20,
+        "Genero": "Masculino",
+        "Cedula": "2350233512"
+    },
+    {
+        "Nombre": "Noelia",
+        "Edad": 19,
+        "Genero": "Femenino",
+        "Cedula": "1723912208"
+    },
+    {
+        "Nombre": "Jean",
+        "Edad": 18,
+        "Genero": "Masculino",
+        "Cedula": "2300005002"
+    },
+    {
+        "Nombre": "Camila",
+        "Edad": 20,
+        "Genero": "Femenino",
+        "Cedula": "1722883038"
+    },
+    {
+        "Nombre": "Ana",
+        "Edad": 20,
+        "Genero": "Femenino",
+        "Cedula": "2350580615"
+    },
+    {
+        "Nombre": "Bryan",
+        "Edad": 21,
+        "Genero": "Masculino",
+        "Cedula": "2300562242"
+    },
+    {
+        "Nombre": "Rayson",
+        "Edad": 20,
+        "Genero": "Masculino",
+        "Cedula": "1004717961"
+    },
+    {
+        "Nombre": "Dylan",
+        "Edad": 22,
+        "Genero": "Masculino",
+        "Cedula": "2300206956"
+    },
+    {
+        "Nombre": "Mariana",
+        "Edad": 50,
+        "Genero": "Femenino",
+        "Cedula": "1234567890"
+    }
+]

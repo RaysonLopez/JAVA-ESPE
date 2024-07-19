@@ -10,74 +10,138 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
+import java.util.ArrayList;
+import java.util.logging.Filter;
+import javax.swing.table.DefaultTableModel;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 /**
  *
  * @author Rayson
  */
-public class ConexionBD {
-    private static final String DATABASE_NAME = "MiPrimerDataBase"; // Nombre de tu base de datos
-    private static final String COLLECTION_NAME = "clientes"; // Nombre de tu colección
-    
+public class ConexionBDClientes extends MongoBD implements MongoDBCRUD{
     private MongoClient mongoClient;
     private MongoDatabase database;
     private MongoCollection<Document> collection;
-    
-    public ConexionBD() {
-        // Establecer conexión con MongoDB
-        mongoClient = MongoClients.create(); // Se conecta al servidor local MongoDB por defecto
-        database = mongoClient.getDatabase(DATABASE_NAME);
-        collection = database.getCollection(COLLECTION_NAME);
+    public ConexionBDClientes (){
+        CrearConexion();
+    }
+     public void CrearConexion(){
+      try {
+            // Establecer conexión con MongoDB
+            mongoClient = MongoClients.create(); // Se conecta al servidor local MongoDB por defecto
+            database = mongoClient.getDatabase(getDATABASE_NAME());
+            collection = database.getCollection(getCOLLECTIONCLIENTES_NAME());
+            System.out.println("Conexión exitosa a la base de datos: " + getCOLLECTIONCLIENTES_NAME());
+        } catch (Exception e) {
+            System.err.println("Error al conectar a la base de datos: " + e.getMessage());
+        }
     }
     public void guardarDatos(String[] datos) {
-        // Crear un documento BSON con los datos
-        Document documento = new Document()
-                .append("nombre", datos[0])
-                .append("id", datos[1])
-                .append("telefono", datos[2])
-                .append("email", datos[3]);
+        // Validar que la colección no sea nula
+        if (collection == null) {
+            System.err.println("La colección no está inicializada.");
+            return;
+        }
+        if(existeDocumento(datos)){
+            throw new RuntimeException("Los datos ya existe en la base de datos");
+        }
+        try {
+            // Crear un documento BSON con los datos
+            Document documento = new Document()
+                .append("CI", datos[0])
+                .append("Contrasenia", datos[1])
+                .append("Nombres Completos", datos[2])
+                
+                .append("Telefono", datos[3])
+                .append("Email", datos[4])
+                .append("Genero",datos[5])
+                .append("Fecha",datos[6]);
+
+            // Insertar el documento en la colección
+            collection.insertOne(documento);
+            System.out.println("Datos guardados correctamente.");
+        } catch (Exception e) {
+            System.err.println("Error al guardar los datos: " + e.getMessage());
+        }
+    }
+    public boolean existeDocumento(String[] datos){
+        Bson filter=Filters.and(
+         Filters.eq("CI",datos[0]),
+         Filters.eq("Contrasenia",datos[1]),
+         Filters.eq("Nombres Completos",datos[2]),
+         
+         Filters.eq("Telefono",datos[3]),
+         Filters.eq("Email",datos[4]),
+         Filters.eq("Genero",datos[5]),
+         Filters.eq("Fecha",datos[6])
+        );
+        MongoCollection<Document>collection=database.getCollection(getCOLLECTIONCLIENTES_NAME());
+        Document documento=collection.find(filter).first();
         
-        // Insertar el documento en la colección
-        collection.insertOne(documento);
+        return documento !=null;
+                
+    }
+    public void leerDatos(){
+    } 
+    public void close() {
+        if (mongoClient != null) {
+            mongoClient.close();
+        }
     }
     public void cerrarConexion() {
         // Cerrar la conexión con MongoDB
         mongoClient.close();
     }
-    public MongoDatabase getDatabase() {
-        return database;
+
+    public void crearConexion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    public void leerDatos(){
-       // Realizar una consulta para obtener todos los documentos de la colección
-        FindIterable<Document> documents = collection.find();
 
-        // Obtener un cursor para iterar sobre los documentos
-        MongoCursor<Document> cursor = documents.iterator();
-        try {
-            while (cursor.hasNext()) {
-                Document doc = cursor.next();
-                // Extraer los campos relevantes del documento (nombre, id, telefono, email)
-                String nombre = doc.getString("nombre");
-                String id = doc.getString("id");
-                String telefono = doc.getString("telefono");
-                String email = doc.getString("email");
+    public void actualizarDatos(String[] datos) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-                // Aquí puedes imprimir los datos o manejarlos según tus necesidades
-                System.out.println("Nombre: " + nombre);
-                System.out.println("ID: " + id);
-                System.out.println("Teléfono: " + telefono);
-                System.out.println("Email: " + email);
-                System.out.println("----------------------");
-            }
-        } finally {
-            // Cerrar el cursor correctamente
-            cursor.close();
-        }
-    } 
-    
-    public void close() {
-        if (mongoClient != null) {
-            mongoClient.close();
-        }
+    public void eliminarDatos(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void actualizarTablaMongo(DefaultTableModel tableModel) {
+       // Create a MongoClient instance
+    MongoClient mongoClient = MongoClients.create("mongodb://localhost:27017");
+
+    // Get the database and collection
+    MongoDatabase database = mongoClient.getDatabase(getDATABASE_NAME());
+    MongoCollection<Document> collection = database.getCollection(getCOLLECTIONCLIENTES_NAME());
+
+    // Find all documents in the collection
+    FindIterable<Document> documents = collection.find();
+
+    // Create a list to store the data
+    ArrayList<Object[]> data = new ArrayList<>();
+
+    // Iterate over the documents and extract the data
+    for (Document document : documents) {
+        Object[] row = new Object[] {
+            document.getString("CI"),
+            document.getString("Contrasenia"),
+            document.getString("Nombres Completos"), 
+            document.getString("Telefono"),
+            document.getString("Email"),
+            document.getString("Genero"),
+            document.getString("Fecha")
+        };
+        data.add(row);
+    }
+
+    // Update the table model
+    tableModel.setRowCount(0);
+    for (Object[] row : data) {
+        tableModel.addRow(row);
+    }
+
+    // Close the MongoClient instance
+    mongoClient.close();
     }
 }

@@ -2,19 +2,52 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interface.Cliente;
+package Interface.Administrador;
+
+import ConexionBD.ConexionBDClientes;
+import static ConexionBD.MongoBD.getCOLLECTIONCLIENTES_NAME;
+import static ConexionBD.MongoBD.getDATABASE_NAME;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import java.awt.List;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import org.bson.Document;
 
 /**
  *
  * @author Rayson
  */
-public class BuscarInterfaz extends javax.swing.JFrame {
-
+public class BuscarClientes extends javax.swing.JFrame {
+     private DefaultTableModel tableModel;
     /**
      * Creates new form BuscarInterfaz
      */
-    public BuscarInterfaz() {
+    public BuscarClientes() {
         initComponents();
+        tableModel = new DefaultTableModel(
+        new Object[][] {},
+        new String[]{"CI","Contrasenia","Nombre y Apellido", "Telefono", "Email", "Genero","Fecha"}
+        ) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false;
+        }
+    };
+        ConexionBDClientes conexionBD=new ConexionBDClientes();
+        conexionBD.actualizarTablaMongo(tableModel);
+    TablaMongo.setModel(tableModel);
     }
 
     /**
@@ -28,16 +61,19 @@ public class BuscarInterfaz extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        Venta = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        TablaMongo = new javax.swing.JTable();
+        AZ = new javax.swing.JRadioButton();
+        correoAZ = new javax.swing.JRadioButton();
+        filtroTexto = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        modificarTabla = new javax.swing.JButton();
+        eliminarTabla = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaMongo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -48,23 +84,51 @@ public class BuscarInterfaz extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaMongo);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        Venta.setText("Venta");
-        jPanel1.add(Venta, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 98, -1));
-
-        jRadioButton2.setText("Arriendo");
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 98, -1));
-
-        jRadioButton3.setText("Fecha");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        AZ.setText("A-Z");
+        AZ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                AZActionPerformed(evt);
             }
         });
-        jPanel1.add(jRadioButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 80, 98, -1));
+        jPanel1.add(AZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 98, -1));
+
+        correoAZ.setText("CORREO A-Z");
+        correoAZ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                correoAZActionPerformed(evt);
+            }
+        });
+        jPanel1.add(correoAZ, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 50, 98, -1));
+
+        filtroTexto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroTextoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(filtroTexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 110, 120, -1));
+
+        jLabel1.setText("Filtrar");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 90, -1, -1));
+
+        modificarTabla.setText("MODIFICAR");
+        modificarTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarTablaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(modificarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 150, -1, -1));
+
+        eliminarTabla.setText("ELIMINAR");
+        eliminarTabla.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarTablaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(eliminarTabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 90, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -75,16 +139,89 @@ public class BuscarInterfaz extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    private void AZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AZActionPerformed
+        TableRowSorter<TableModel>sorter=new TableRowSorter<TableModel>(tableModel);
+        TablaMongo.setRowSorter(sorter);
+        ArrayList<RowSorter.SortKey>sortKeys=new ArrayList<RowSorter.SortKey>();
+        sortKeys.add(new RowSorter.SortKey(2, SortOrder.ASCENDING));
+        sorter.setSortKeys(sortKeys);
+        sorter.sort();
+    }//GEN-LAST:event_AZActionPerformed
+
+    private void correoAZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoAZActionPerformed
+       TableRowSorter<TableModel>sorter=new TableRowSorter<TableModel>(tableModel);
+       TablaMongo.setRowSorter(sorter);
+       ArrayList<RowSorter.SortKey>sortKeys=new ArrayList<RowSorter.SortKey>();
+       sortKeys.add(new RowSorter.SortKey(4, SortOrder.ASCENDING));
+       sorter.setSortKeys(sortKeys);
+       sorter.sort();
+    }//GEN-LAST:event_correoAZActionPerformed
+
+    private void filtroTextoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroTextoActionPerformed
+        String texto=filtroTexto.getText();
+        TableRowSorter<TableModel>sorter=new TableRowSorter<TableModel>(tableModel);
+        TablaMongo.setRowSorter(sorter);
+        sorter.setRowFilter(RowFilter.regexFilter(texto,0,1,2,3));
+    }//GEN-LAST:event_filtroTextoActionPerformed
+
+    private void modificarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarTablaActionPerformed
+    // Obtener el modelo de la tabla
+    DefaultTableModel tableModel = (DefaultTableModel) TablaMongo.getModel();
+    tableModel = new DefaultTableModel(
+        new Object[][] {},
+        new String[]{"CI","Contrasenia","Nombre y Apellido", "Telefono", "Email", "Genero","Fecha"}
+    ) {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return true;
+        }
+    };
+
+    // Agregar listener al modelo de la tabla
+    tableModel.addTableModelListener(new TableModelListener() {
+        @Override
+        public void tableChanged(TableModelEvent e) {
+            int row = e.getFirstRow();
+            int column = e.getColumn();
+            Object data = TablaMongo.getValueAt(row, column);
+
+            // Aquí puedes obtener la fila y columna modificada, así como el nuevo valor
+            System.out.println("Celda modificada: " + TablaMongo.getColumnName(column) + " en fila " + row + " con valor " + data);
+
+            // Actualiza la base de datos con los nuevos valores
+            actualizarBaseDeDatos(row, TablaMongo.getColumnName(column), data);
+        }
+    });  
+    }//GEN-LAST:event_modificarTablaActionPerformed
+private void actualizarBaseDeDatos(int row, String columnName, Object data) {
+        ConexionBDClientes conexion = new ConexionBDClientes();
+    MongoCollection<Document> collection = conexion.getCollection();
+    Document filter = new Document("CI", (String) TablaMongo.getValueAt(row, 0));
+    Document update = new Document("$set", new Document(columnName, data));
+    collection.updateOne(filter, update);
+    conexion.close();
+}
+    private void eliminarTablaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarTablaActionPerformed
+         int row = TablaMongo.getSelectedRow();
+    if (row != -1) {
+        String ci = (String) TablaMongo.getValueAt(row, 0);
+        ConexionBDClientes conexion = new ConexionBDClientes();
+             MongoClient mongoClient = MongoClients.create(); // Se conecta al servidor local MongoDB por defecto
+             MongoDatabase database = mongoClient.getDatabase(getDATABASE_NAME());
+             MongoCollection<Document> collection = database.getCollection(getCOLLECTIONCLIENTES_NAME());
+        Document filter = new Document("CI", ci);
+        collection.deleteOne(filter);
+        conexion.close();
+        ((DefaultTableModel) TablaMongo.getModel()).removeRow(row);
+    }
+    }//GEN-LAST:event_eliminarTablaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,30 +240,36 @@ public class BuscarInterfaz extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarInterfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarClientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuscarInterfaz().setVisible(true);
+                new BuscarClientes().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton Venta;
+    private javax.swing.JRadioButton AZ;
+    private javax.swing.JTable TablaMongo;
+    private javax.swing.JRadioButton correoAZ;
+    private javax.swing.JButton eliminarTabla;
+    private javax.swing.JTextField filtroTexto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton modificarTabla;
     // End of variables declaration//GEN-END:variables
 }

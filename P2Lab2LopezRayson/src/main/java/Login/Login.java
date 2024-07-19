@@ -1,5 +1,14 @@
-package Interface;
+package Login;
 
+import ConexionBD.ConexionBDClientes;
+import static ConexionBD.MongoBD.getCOLLECTIONCLIENTES_NAME;
+import static ConexionBD.MongoBD.getDATABASE_NAME;
+import Interface.MenuPrincipal;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import java.awt.Color;
 import java.awt.Image;
 import java.util.prefs.Preferences;
@@ -10,6 +19,7 @@ import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+import org.bson.Document;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -98,10 +108,11 @@ public class Login extends javax.swing.JFrame {
         exitButton = new javax.swing.JButton();
         languaje = new javax.swing.JComboBox<>();
         CheckMostrarContra = new javax.swing.JCheckBox();
+        RegistrarseButtom = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         FONDO = new javax.swing.JLabel();
 
         setLocation(new java.awt.Point(1200, 800));
-        setPreferredSize(new java.awt.Dimension(450, 450));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         errorPassword.setBackground(new java.awt.Color(255, 51, 51));
@@ -109,27 +120,27 @@ public class Login extends javax.swing.JFrame {
         errorPassword.setForeground(new java.awt.Color(255, 51, 51));
         errorPassword.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         errorPassword.setText("Password Incorrecta");
-        getContentPane().add(errorPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 260, 20));
+        getContentPane().add(errorPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 320, 260, 20));
 
         login.setFont(new java.awt.Font("OCR A Extended", 3, 18)); // NOI18N
         login.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         login.setText("Ingresar");
         login.setToolTipText("");
-        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 190, 40));
+        getContentPane().add(login, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 190, 40));
 
         errorId.setFont(new java.awt.Font("Segoe UI Emoji", 3, 12)); // NOI18N
         errorId.setForeground(new java.awt.Color(255, 51, 102));
         errorId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         errorId.setText("ID Invalido");
-        getContentPane().add(errorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 340, 20));
+        getContentPane().add(errorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 340, 20));
 
         passwordL.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         passwordL.setText("PASSWORD");
-        getContentPane().add(passwordL, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, -1, -1));
+        getContentPane().add(passwordL, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, 80, -1));
 
         usuarioL.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
         usuarioL.setText("USUARIO");
-        getContentPane().add(usuarioL, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
+        getContentPane().add(usuarioL, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, -1));
 
         id.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         id.setActionCommand("<Not Set>");
@@ -140,7 +151,7 @@ public class Login extends javax.swing.JFrame {
                 idActionPerformed(evt);
             }
         });
-        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 180, 30));
+        getContentPane().add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 220, 40));
 
         password.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         password.addActionListener(new java.awt.event.ActionListener() {
@@ -148,7 +159,7 @@ public class Login extends javax.swing.JFrame {
                 passwordActionPerformed(evt);
             }
         });
-        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 180, 30));
+        getContentPane().add(password, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 220, 40));
 
         ButtomIniciar.setBackground(new java.awt.Color(0, 0, 0));
         ButtomIniciar.setFont(new java.awt.Font("Segoe UI Black", 0, 12)); // NOI18N
@@ -162,7 +173,7 @@ public class Login extends javax.swing.JFrame {
                 ButtomIniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(ButtomIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 100, 30));
+        getContentPane().add(ButtomIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 100, 30));
 
         exitButton.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         exitButton.setText("Salir");
@@ -183,7 +194,7 @@ public class Login extends javax.swing.JFrame {
                 languajeActionPerformed(evt);
             }
         });
-        getContentPane().add(languaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 370, 90, -1));
+        getContentPane().add(languaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 480, 90, -1));
 
         CheckMostrarContra.setText("Mostrar Contrasenia");
         CheckMostrarContra.addActionListener(new java.awt.event.ActionListener() {
@@ -191,10 +202,23 @@ public class Login extends javax.swing.JFrame {
                 CheckMostrarContraActionPerformed(evt);
             }
         });
-        getContentPane().add(CheckMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, -1, -1));
+        getContentPane().add(CheckMostrarContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, -1, -1));
+
+        RegistrarseButtom.setText("REGISTRARSE");
+        RegistrarseButtom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarseButtomActionPerformed(evt);
+            }
+        });
+        getContentPane().add(RegistrarseButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Eres nuevo por aqui, Registrate");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
 
         FONDO.setDoubleBuffered(true);
-        getContentPane().add(FONDO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 440));
+        getContentPane().add(FONDO, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 540));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -259,8 +283,13 @@ public class Login extends javax.swing.JFrame {
         if (errorId.isVisible() || errorPassword.isVisible()) {
             return; // No proceder si hay errores
         }
-
-        if (userId.equals("1234567890") && userPassword.equals("password")) {
+        ConexionBDClientes cliente=new ConexionBDClientes();
+       MongoClient mongoClient = MongoClients.create(); // Se conecta al servidor local MongoDB por defecto
+       MongoDatabase database = mongoClient.getDatabase(getDATABASE_NAME());
+        MongoCollection<Document> collection = database.getCollection(getCOLLECTIONCLIENTES_NAME());
+        Document query=new Document("CI",userId).append("Contrasenia",userPassword);
+        FindIterable<Document>result=collection.find(query);
+        if (result.iterator().hasNext()) {
             JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso.", "Login", JOptionPane.INFORMATION_MESSAGE);
             abrirMenuPrincipal(); // Método para abrir la siguiente ventana
 
@@ -303,9 +332,20 @@ public class Login extends javax.swing.JFrame {
     this.revalidate();
     this.repaint();
     }//GEN-LAST:event_languajeActionPerformed
+
+    private void RegistrarseButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarseButtomActionPerformed
+       abrirIngresoClientes();
+    }//GEN-LAST:event_RegistrarseButtomActionPerformed
     private void abrirMenuPrincipal() {
         // Crear una instancia de menuPrincipal y hacerla visible
         MenuPrincipal menu = new MenuPrincipal();
+        menu.setVisible(true);
+        // Ocultar la ventana de login actual
+        this.setVisible(false);
+    }
+    private void abrirIngresoClientes() {
+        // Crear una instancia de menuPrincipal y hacerla visible
+        IngresoClienteNuevo menu = new IngresoClienteNuevo();
         menu.setVisible(true);
         // Ocultar la ventana de login actual
         this.setVisible(false);
@@ -350,10 +390,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JButton ButtomIniciar;
     private javax.swing.JCheckBox CheckMostrarContra;
     private javax.swing.JLabel FONDO;
+    private javax.swing.JButton RegistrarseButtom;
     private javax.swing.JLabel errorId;
     private javax.swing.JLabel errorPassword;
     private javax.swing.JButton exitButton;
     private javax.swing.JTextField id;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JComboBox<String> languaje;
     private javax.swing.JLabel login;
     private javax.swing.JPasswordField password;

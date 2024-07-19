@@ -1,6 +1,0 @@
-package com.mycompany.P1PracticaEvaLopezRayson;
-import java.util.*;
-public class Cliente extends Persona{
-	private ArrayList<String>clientes;
-	
-}

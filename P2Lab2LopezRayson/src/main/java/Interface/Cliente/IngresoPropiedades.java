@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interface;
+package Interface.Cliente;
 
+import Login.Login;
 import java.awt.Image;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,23 +19,24 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Rayson
  */
-public class MenuPrincipal extends javax.swing.JFrame {
+public class IngresoPropiedades extends javax.swing.JFrame {
     private DefaultTableModel tableModel;
     private ResourceBundle bundle;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public IngresoPropiedades() {
         initComponents();
         errorNames.setVisible(false);
-        errorId.setVisible(false);
-        errorPhone.setVisible(false);
-        errorEmail.setVisible(false);
-        
+        errorDescripcion.setVisible(false);
+        errorDirrecion.setVisible(false);
+        errorPrecio.setVisible(false);
+        errorMetros.setVisible(false);
+       
         Redimensionador(fondoM,"/IngresoClienteNuevo/Menu1.jpeg");
         tableModel = new DefaultTableModel(
         new Object[][] {},
-        new String[]{"Nombre y Apellido", "ID", "Telefono", "Email", "Genero"}
+        new String[]{"Nombre y Apellido","Descripcion","Precio","Metros Cuadrados","Dirrecion","Disponibilidad","Numero De Cuartos", "Ubicacion"}
         ) {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -92,25 +93,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         dataTable = new javax.swing.JTable();
-        NombresLabel = new javax.swing.JLabel();
+        nombrePLabel = new javax.swing.JLabel();
         idLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
-        errorNames = new javax.swing.JLabel();
+        errorDirrecion = new javax.swing.JLabel();
         telfLabel = new javax.swing.JLabel();
-        errorEmail = new javax.swing.JLabel();
-        errorPhone = new javax.swing.JLabel();
-        errorId = new javax.swing.JLabel();
-        names = new javax.swing.JTextField();
-        id = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
-        phone = new javax.swing.JTextField();
+        errorPrecio = new javax.swing.JLabel();
+        errorMetros = new javax.swing.JLabel();
+        namesPropiedad = new javax.swing.JTextField();
+        descripcionText = new javax.swing.JTextField();
+        precioText = new javax.swing.JTextField();
+        metrosText = new javax.swing.JTextField();
         deleteTable = new javax.swing.JButton();
         saveTable = new javax.swing.JButton();
         ModificateTable = new javax.swing.JButton();
-        generoCombo = new javax.swing.JComboBox<>();
-        telfLabel1 = new javax.swing.JLabel();
-        fondoCampos = new javax.swing.JLabel();
+        numeroCuartosCombo = new javax.swing.JComboBox<>();
+        Genero = new javax.swing.JLabel();
         languaje = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
+        ubicacionCombo = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        idLabel1 = new javax.swing.JLabel();
+        disponibilidadCombo = new javax.swing.JComboBox<>();
+        idLabel2 = new javax.swing.JLabel();
+        dirreccionText = new javax.swing.JTextField();
+        telfLabel1 = new javax.swing.JLabel();
+        errorNames = new javax.swing.JLabel();
+        errorDescripcion = new javax.swing.JLabel();
+        fondoCampos = new javax.swing.JLabel();
         fondoM = new javax.swing.JLabel();
         MenuBaseDatos = new javax.swing.JMenuBar();
         MongolBDMenu = new javax.swing.JMenu();
@@ -133,63 +144,59 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jScrollPane2.setViewportView(jScrollPane1);
 
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 450, 231));
+        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 810, 231));
 
-        NombresLabel.setText("Nombres Completos");
-        jPanel2.add(NombresLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 164, -1));
+        nombrePLabel.setText("Nombres Completos");
+        jPanel2.add(nombrePLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 164, -1));
 
-        idLabel.setText("ID");
-        jPanel2.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 37, -1));
+        idLabel.setText("Numeros De Cuartos");
+        jPanel2.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, 120, -1));
 
-        emailLabel.setText("Email");
-        jPanel2.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 183, -1));
+        emailLabel.setText("Precio");
+        jPanel2.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 183, -1));
 
-        errorNames.setForeground(new java.awt.Color(255, 0, 51));
-        errorNames.setText("Error, tiene que tener un nombre y un apellido");
-        jPanel2.add(errorNames, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 30));
+        errorDirrecion.setForeground(new java.awt.Color(255, 0, 51));
+        errorDirrecion.setText("Error:No puede estar vacio");
+        jPanel2.add(errorDirrecion, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 60, 170, 30));
 
-        telfLabel.setText("Genero");
-        jPanel2.add(telfLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 183, -1));
+        telfLabel.setText("Metros Cuadrados");
+        jPanel2.add(telfLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 183, -1));
 
-        errorEmail.setForeground(new java.awt.Color(255, 0, 51));
-        errorEmail.setText("Email incorrecto");
-        jPanel2.add(errorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 183, -1));
+        errorPrecio.setForeground(new java.awt.Color(255, 0, 51));
+        errorPrecio.setText("Precio Incorrecto");
+        jPanel2.add(errorPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 140, 183, -1));
 
-        errorPhone.setForeground(new java.awt.Color(255, 0, 51));
-        errorPhone.setText("Telefono incorrecto");
-        jPanel2.add(errorPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 183, -1));
+        errorMetros.setForeground(new java.awt.Color(255, 0, 51));
+        errorMetros.setText("Error:metros incorrectos");
+        jPanel2.add(errorMetros, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 183, -1));
 
-        errorId.setForeground(new java.awt.Color(255, 0, 51));
-        errorId.setText("Id Incorrecto");
-        jPanel2.add(errorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 183, -1));
-
-        names.addActionListener(new java.awt.event.ActionListener() {
+        namesPropiedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namesActionPerformed(evt);
+                namesPropiedadActionPerformed(evt);
             }
         });
-        jPanel2.add(names, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 189, -1));
+        jPanel2.add(namesPropiedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 189, -1));
 
-        id.addActionListener(new java.awt.event.ActionListener() {
+        descripcionText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                descripcionTextActionPerformed(evt);
             }
         });
-        jPanel2.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 183, -1));
+        jPanel2.add(descripcionText, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 183, 30));
 
-        email.addActionListener(new java.awt.event.ActionListener() {
+        precioText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
+                precioTextActionPerformed(evt);
             }
         });
-        jPanel2.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 183, -1));
+        jPanel2.add(precioText, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 110, 183, 30));
 
-        phone.addActionListener(new java.awt.event.ActionListener() {
+        metrosText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneActionPerformed(evt);
+                metrosTextActionPerformed(evt);
             }
         });
-        jPanel2.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 183, -1));
+        jPanel2.add(metrosText, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 183, -1));
 
         deleteTable.setText("ELIMINAR");
         deleteTable.addActionListener(new java.awt.event.ActionListener() {
@@ -215,20 +222,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(ModificateTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, -1, -1));
 
-        generoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "39 tipos de Gay" }));
-        generoCombo.addActionListener(new java.awt.event.ActionListener() {
+        numeroCuartosCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
+        numeroCuartosCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                generoComboActionPerformed(evt);
+                numeroCuartosComboActionPerformed(evt);
             }
         });
-        jPanel2.add(generoCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 90, 30));
+        jPanel2.add(numeroCuartosCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 120, 30));
 
-        telfLabel1.setText("Telefono");
-        jPanel2.add(telfLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 183, -1));
-
-        fondoCampos.setBackground(new java.awt.Color(255, 255, 255));
-        fondoCampos.setOpaque(true);
-        jPanel2.add(fondoCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 680, 150));
+        Genero.setText("Ubicacion");
+        jPanel2.add(Genero, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 183, -1));
 
         languaje.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "English" }));
         languaje.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +239,61 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 languajeActionPerformed(evt);
             }
         });
-        jPanel2.add(languaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, -1, -1));
+        jPanel2.add(languaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 480, -1, -1));
+
+        jButton1.setText("LEER");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 480, -1, -1));
+
+        ubicacionCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aruba", "Afghanistan", "Angola", "Anguilla", "Åland Islands", "Albania", "Andorra", "United Arab Emirates", "Argentina", "Armenia", "American Samoa", "Antarctica", "French Southern Territories", "Antigua and Barbuda", "Australia", "Austria", "Azerbaijan", "Burundi", "Belgium", "Benin", "Bonaire", "Sint Eustatius and Saba", "Burkina Faso", "Bangladesh", "Bulgaria", "Bahrain", "Bahamas", "Bosnia and Herzegovina", "Saint Barthélemy", "Belarus", "Belize", "Bermuda", "Bolivia", "Plurinational State of", "Brazil", "Barbados", "Brunei Darussalam", "Bhutan", "Bouvet Island", "Botswana", "Central African Republic", "Canada", "Cocos (Keeling) Islands", "Switzerland", "Chile", "China", "Côte d'Ivoire", "Cameroon", "Congo", "The Democratic Republic of the", "Congo", "Cook Islands", "Colombia", "Comoros", "Cabo Verde", "Costa Rica", "Cuba", "Curaçao", "Christmas Island", "Cayman Islands", "Cyprus", "Czechia", "Germany", "Djibouti", "Dominica", "Denmark", "Dominican Republic", "Algeria", "Ecuador", "Egypt", "Eritrea", "Western Sahara", "Spain", "Estonia", "Ethiopia", "Finland", "Fiji", "Falkland Islands (Malvinas)", "France", "Faroe Islands", "Micronesia", "Federated States of", "Gabon", "United Kingdom", "Georgia", "Guernsey", "Ghana", "Gibraltar", "Guinea", "Guadeloupe", "Gambia", "Guinea-Bissau", "Equatorial Guinea", "Greece", "Grenada", "Greenland", "Guatemala", "French Guiana", "Guam", "Guyana", "Hong Kong", "Heard Island and McDonald Islands", "Honduras", "Croatia", "Haiti", "Hungary", "Indonesia", "Isle of Man", "India", "British Indian Ocean Territory", "Ireland", "Iran", "Islamic Republic of", "Iraq", "Iceland", "Israel", "Italy", "Jamaica", "Jersey", "Jordan", "Japan", "Kazakhstan", "Kenya", "Kyrgyzstan", "Cambodia", "Kiribati", "Saint Kitts and Nevis", "Korea", "Republic of", "Kuwait", "Lao People's Democratic Republic", "Lebanon", "Liberia", "Libya", "Saint Lucia", "Liechtenstein", "Sri Lanka", "Lesotho", "Lithuania", "Luxembourg", "Latvia", "Macao", "Saint Martin (French part)", "Morocco", "Monaco", "Moldova", "Republic of", "Madagascar", "Maldives", "Mexico", "Marshall Islands", "North Macedonia", "Mali", "Malta", "Myanmar", "Montenegro", "Mongolia", "Northern Mariana Islands", "Mozambique", "Mauritania", "Montserrat", "Martinique", "Mauritius", "Malawi", "Malaysia", "Mayotte", "Namibia", "New Caledonia", "Niger", "Norfolk Island", "Nigeria", "Nicaragua", "Niue", "Netherlands", "Norway", "Nepal", "Nauru", "New Zealand", "Oman", "Pakistan", "Panama", "Pitcairn", "Peru", "Philippines", "Palau", "Papua New Guinea", "Poland", "Puerto Rico", "Korea", "Democratic People's Republic of", "Portugal", "Paraguay", "Palestine", "State of", "French Polynesia", "Qatar", "Réunion", "Romania", "Russian Federation", "Rwanda", "Saudi Arabia", "Sudan", "Senegal", "Singapore", "South Georgia and the South Sandwich Islands", "Saint Helena", "Ascension and Tristan da Cunha", "Svalbard and Jan Mayen", "Solomon Islands", "Sierra Leone", "El Salvador", "San Marino", "Somalia", "Saint Pierre and Miquelon", "Serbia", "South Sudan", "Sao Tome and Principe", "Suriname", "Slovakia", "Slovenia", "Sweden", "Eswatini", "Sint Maarten (Dutch part)", "Seychelles", "Syrian Arab Republic", "Turks and Caicos Islands", "Chad", "Togo", "Thailand", "Tajikistan", "Tokelau", "Turkmenistan", "Timor-Leste", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Tuvalu", "Taiwan", "Province of China", "Tanzania", "United Republic of", "Uganda", "Ukraine", "United States Minor Outlying Islands", "Uruguay", "United States", "Uzbekistan", "Holy See (Vatican City State)", "Saint Vincent and the Grenadines", "Venezuela", "Bolivarian Republic of", "Virgin Islands", "British", "Virgin Islands", "U.S.", "Viet Nam", "Vanuatu", "Wallis and Futuna", "Samoa", "Yemen", "South Africa", "Zambia", "Zimbabwe" }));
+        ubicacionCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ubicacionComboActionPerformed(evt);
+            }
+        });
+        jPanel2.add(ubicacionCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 90, 30));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("BIENVENIDO AL INGRESO DE CLIENTE\n\nFLEXIHOME\n\n");
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 280, 60));
+
+        idLabel1.setText("Descripcion");
+        jPanel2.add(idLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 80, -1));
+
+        disponibilidadCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Venta", "Arriendo", "Reserva" }));
+        disponibilidadCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                disponibilidadComboActionPerformed(evt);
+            }
+        });
+        jPanel2.add(disponibilidadCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 120, 30));
+
+        idLabel2.setText("Disponibilidad");
+        jPanel2.add(idLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 80, -1));
+
+        dirreccionText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dirreccionTextActionPerformed(evt);
+            }
+        });
+        jPanel2.add(dirreccionText, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 183, 30));
+
+        telfLabel1.setText("Dirreccion");
+        jPanel2.add(telfLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 183, -1));
+
+        errorNames.setForeground(new java.awt.Color(255, 0, 51));
+        errorNames.setText("Error, tiene que tener un nombre y un apellido");
+        jPanel2.add(errorNames, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 30));
+
+        errorDescripcion.setForeground(new java.awt.Color(255, 0, 51));
+        errorDescripcion.setText("Error, tiene que tener un nombre y un apellido");
+        jPanel2.add(errorDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 250, 30));
+
+        fondoCampos.setBackground(new java.awt.Color(255, 255, 255));
+        fondoCampos.setOpaque(true);
+        jPanel2.add(fondoCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, 800, 210));
         jPanel2.add(fondoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 900, 580));
 
         MenuBaseDatos.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
@@ -315,13 +372,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTableActionPerformed
-    // Obtener los datos ingresados
-    String nombres = names.getText();
-    String ID = id.getText();
-    String telf = phone.getText();
-    String mail = email.getText();
-    String genero = generoCombo.getSelectedItem().toString();
-    // Validar los campos
+    String nombres=namesPropiedad.getText();
+    String descripcion=descripcionText.getText();
+    String precio=precioText.getText();
+    String metros=metrosText.getText();
+    String dirreccion=dirreccionText.getText();
+    String disponibilidad=disponibilidadCombo.getSelectedItem().toString();
+    String numeroCuartos=numeroCuartosCombo.getSelectedItem().toString();
+    String ubicacion=ubicacionCombo.getSelectedItem().toString();
     boolean valid = true;
     
     if (!nombres.matches("[A-Za-z]+\\s[A-Za-z]+")) {
@@ -331,67 +389,74 @@ public class MenuPrincipal extends javax.swing.JFrame {
     } else {
         errorNames.setVisible(false);
     }
-
-    if (!ID.matches("\\d{10}")) {
-        errorId.setText("Error: el ID debe contener 10 dígitos");
-        errorId.setVisible(true);
+    
+    if (descripcion.isEmpty()) {
+        errorDescripcion.setText("Error: descripcion no puede estar vacia");
+        errorDescripcion.setVisible(true);
         valid = false;
     } else {
-        errorId.setVisible(false);
+        errorDescripcion.setVisible(false);
     }
-
-    if (!telf.matches("\\d{10}")) {
-        errorPhone.setText("Error: el teléfono debe contener 10 dígitos");
-        errorPhone.setVisible(true);
+    
+    if (dirreccion.isEmpty()) {
+        errorDirrecion.setText("Error: dirreccion no puede estar vacia");
+        errorDirrecion.setVisible(true);
         valid = false;
     } else {
-        errorPhone.setVisible(false);
+        errorDirrecion.setVisible(false);
     }
-
-    if (!mail.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-        errorEmail.setText("Error: email incorrecto");
-        errorEmail.setVisible(true);
+    
+    if (!precio.matches("^\\d+(\\.\\d{1,2})?$")) {
+        errorPrecio.setText("Error: debe ser un numero decimal");
+        errorPrecio.setVisible(true);
         valid = false;
     } else {
-        errorEmail.setVisible(false);
+        errorPrecio.setVisible(false);
     }
-    // Si todos los campos son válidos, agregar a la tabla
-// Si todos los campos son válidos, agregar a la tabla
+    
+    if (!metros.matches("^\\d+(\\.\\d{1,2})?$")) {
+        errorMetros.setText("Error: debe ser un numero decimal");
+        errorMetros.setVisible(true);
+        valid = false;
+    } else {
+        errorMetros.setVisible(false);
+    }   
+    
     if (valid) {
         DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
         int rowCount = tableModel.getRowCount();
         boolean duplicate = false;
 
         for (int i = 0; i < rowCount; i++) {
-            String existingID = tableModel.getValueAt(i, 1).toString();
-            String existingPhone = tableModel.getValueAt(i, 2).toString();
-            String existingEmail = tableModel.getValueAt(i, 3).toString();
+            String existingNombres = tableModel.getValueAt(i, 1).toString();
 
-            if (ID.equals(existingID) || telf.equals(existingPhone) || mail.equals(existingEmail)) {
+            if (nombres.equals(existingNombres)) {
                 duplicate = true;
                 break;
             }
         }
 
         if (duplicate) {
-            JOptionPane.showMessageDialog(this, "Error: ID, teléfono o email ya existen en la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error: El Nombre De La Propiedad no puede ser lo mismo.", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            String[] camposT = {nombres, ID, telf, mail, genero};
+            String[] camposT = {nombres, descripcion, precio, metros, dirreccion,disponibilidad,numeroCuartos,ubicacion};
             tableModel.addRow(camposT);
 
             // Limpiar los campos de entrada
-            names.setText("");
-            id.setText("");
-            phone.setText("");
-            email.setText("");
-            generoCombo.setSelectedIndex(0); // Reiniciar el combo box de género
+            namesPropiedad.setText("");
+            descripcionText.setText("");
+            precioText.setText("");
+            metrosText.setText("");
+            dirreccionText.setText("");
+            disponibilidadCombo.setSelectedIndex(0);
+            numeroCuartosCombo.setSelectedIndex(0);
+            ubicacionCombo.setSelectedIndex(0);// Reiniciar el combo box de género
         }
     }
     }//GEN-LAST:event_saveTableActionPerformed
 
-    private void namesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namesActionPerformed
-       
-    }//GEN-LAST:event_namesActionPerformed
+    private void namesPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namesPropiedadActionPerformed
+    }//GEN-LAST:event_namesPropiedadActionPerformed
 
     private void deleteTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTableActionPerformed
     DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
@@ -403,97 +468,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_deleteTableActionPerformed
 
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
+    private void descripcionTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_descripcionTextActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
+    }//GEN-LAST:event_descripcionTextActionPerformed
 
-    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneActionPerformed
+    private void metrosTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_metrosTextActionPerformed
+        String metros=metrosText.getText();
 
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
+    }//GEN-LAST:event_metrosTextActionPerformed
+
+    private void precioTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precioTextActionPerformed
+        String precio=precioText.getText();
+        if(precio.matches("^\\d+(\\.\\d{1,2})?$")){
+            errorPrecio.setVisible(false);
+        }else{
+            errorPrecio.setText("Error: debe ser numero decimal");
+            errorPrecio.setVisible(true);
+        }
+    }//GEN-LAST:event_precioTextActionPerformed
 
     private void ModificateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificateTableActionPerformed
-    // Obtener el modelo de la tabla
-    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    
-    // Obtener la fila seleccionada
-    int selectedRow = dataTable.getSelectedRow();
-    
-    // Verificar si se ha seleccionado una fila
-    if (selectedRow >= 0) {
-        // Obtener los valores de la fila seleccionada
-        String nombres = (String) tableModel.getValueAt(selectedRow, 0);
-        String ID = (String) tableModel.getValueAt(selectedRow, 1);
-        String telf = (String) tableModel.getValueAt(selectedRow, 2);
-        String mail = (String) tableModel.getValueAt(selectedRow, 3);
-
-        // Establecer los valores en los campos de texto
-        names.setText(nombres);
-        id.setText(ID);
-        phone.setText(telf);
-        email.setText(mail);
-
-        // Confirmar la modificación
-        int confirm = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "Confirmar Modificación", JOptionPane.YES_NO_OPTION);
-        
-        if (confirm == JOptionPane.YES_OPTION) {
-            // Validar los campos
-            boolean valid = true;
-
-            if (!nombres.matches("[A-Za-z]+\\s[A-Za-z]+")) {
-                errorNames.setText("Error: tiene que tener un nombre y un apellido");
-                errorNames.setVisible(true);
-                valid = false;
-            } else {
-                errorNames.setVisible(false);
-            }
-
-            if (!ID.matches("\\d{10}")) {
-                errorId.setText("Error: el ID debe contener 10 dígitos");
-                errorId.setVisible(true);
-                valid = false;
-            } else {
-                errorId.setVisible(false);
-            }
-
-            if (!telf.matches("\\d{10}")) {
-                errorPhone.setText("Error: el teléfono debe contener 10 dígitos");
-                errorPhone.setVisible(true);
-                valid = false;
-            } else {
-                errorPhone.setVisible(false);
-            }
-
-            if (!mail.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-                errorEmail.setText("Error: email incorrecto");
-                errorEmail.setVisible(true);
-                valid = false;
-            } else {
-                errorEmail.setVisible(false);
-            }
-
-            // Si todos los campos son válidos, actualizar la fila
-            if (valid) {
-                tableModel.setValueAt(nombres, selectedRow, 0);
-                tableModel.setValueAt(ID, selectedRow, 1);
-                tableModel.setValueAt(telf, selectedRow, 2);
-                tableModel.setValueAt(mail, selectedRow, 3);
-                
-                // Limpiar los campos de entrada
-                names.setText("");
-                id.setText("");
-                phone.setText("");
-                email.setText("");
-
-                JOptionPane.showMessageDialog(this, "Modificación exitosa.", "Modificar", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Seleccione una fila para modificar.", "Modificar", JOptionPane.WARNING_MESSAGE);
-    }
+   
     }//GEN-LAST:event_ModificateTableActionPerformed
 
     private void GuardarBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBDActionPerformed
@@ -501,18 +496,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
     DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
     
     // Crear instancia de MongoDBManager (asegúrate de importar la clase correcta)
-    ConexionBD.ConexionBD manager = new ConexionBD.ConexionBD();
-    
+    ConexionBD.ConexionBDClientes manager = new ConexionBD.ConexionBDClientes();
+
     // Iterar sobre cada fila de la tabla
     for (int i = 0; i < tableModel.getRowCount(); i++) {
         // Obtener los datos de la fila actual
         String nombres = (String) tableModel.getValueAt(i, 0);
-        String ID = (String) tableModel.getValueAt(i, 1);
-        String telf = (String) tableModel.getValueAt(i, 2);
-        String mail = (String) tableModel.getValueAt(i, 3);
-        
+        String descripcion = (String) tableModel.getValueAt(i, 1);
+        String precio = (String) tableModel.getValueAt(i, 2);
+        String metros = (String) tableModel.getValueAt(i, 3);
+        String dirreccion=(String) tableModel.getValueAt(i,4);
+        String disponibilidad=(String)tableModel.getValueAt(i, 5);
+        String numeroCuartos=(String)tableModel.getValueAt(i,6);
+        String ubicacion=(String)tableModel.getValueAt(i,7);
         // Guardar los datos en MongoDB
-        String[] datos = {nombres, ID, telf, mail};
+        String[] datos = {nombres, descripcion, precio, metros,dirreccion,disponibilidad,numeroCuartos,ubicacion};
         manager.guardarDatos(datos);
     }
     
@@ -546,70 +544,31 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void backMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMenuActionPerformed
                // Ocultar la ventana actual
         this.setVisible(false);
-        // Crear y mostrar la ventana de login
-        new Login().setVisible(true);
     }//GEN-LAST:event_backMenuActionPerformed
 
     private void languajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languajeActionPerformed
-    String selectedLanguage = (String) languaje.getSelectedItem();
-    if ("Español".equals(selectedLanguage)) {
-        // Configurar los textos en español
-        NombresLabel.setText("Nombre y Apellido");
-        idLabel.setText("ID");
-        emailLabel.setText("Email");
-        telfLabel.setText("Teléfono");
-        telfLabel1.setText("Género");
-        errorNames.setText("Error, tiene que tener un nombre y un apellido");
-        errorId.setText("Id Incorrecto");
-        errorPhone.setText("Teléfono incorrecto");
-        errorEmail.setText("Email incorrecto");
-        saveTable.setText("GUARDAR");
-        deleteTable.setText("ELIMINAR");
-        ModificateTable.setText("MODIFICAR");
-        GuardarBD.setText("Guardar En BD");
-        exitMenuAdd.setText("Salir");
-        backMenu.setText("Regresar");
-        MongolBDMenu.setText("MongolBD");
-        jMenu1.setText("Guardar");
-        jMenu2.setText("Conectar");
-        jMenu3.setText("Buscar");
-        exitMenu.setText("Salir");
-    } else if ("English".equals(selectedLanguage)) {
-        // Configurar los textos en inglés
-        NombresLabel.setText("Full Name");
-        idLabel.setText("ID");
-        emailLabel.setText("Email");
-        telfLabel.setText("Phone");
-        telfLabel1.setText("Gender");
-        errorNames.setText("Error: must have a first and last name");
-        errorId.setText("Incorrect ID");
-        errorPhone.setText("Incorrect phone");
-        errorEmail.setText("Incorrect email");
-        saveTable.setText("SAVE");
-        deleteTable.setText("DELETE");
-        ModificateTable.setText("MODIFY");
-        GuardarBD.setText("Save In BD");
-        exitMenuAdd.setText("Exit");
-        backMenu.setText("Back");
-        MongolBDMenu.setText("MongolBD");
-        jMenu1.setText("Save");
-        jMenu2.setText("Connect");
-        jMenu3.setText("Search");
-        exitMenu.setText("Exit");
-    }
-
-    // Forzar la actualización de la interfaz
-    this.revalidate();
-    this.repaint();
+    
     }//GEN-LAST:event_languajeActionPerformed
 
-    private void generoComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generoComboActionPerformed
+    private void numeroCuartosComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroCuartosComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_generoComboActionPerformed
+    }//GEN-LAST:event_numeroCuartosComboActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void ubicacionComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ubicacionComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ubicacionComboActionPerformed
+
+    private void disponibilidadComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_disponibilidadComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_disponibilidadComboActionPerformed
+
+    private void dirreccionTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dirreccionTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dirreccionTextActionPerformed
 
     /**
      * @param args the command line arguments
@@ -628,46 +587,53 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngresoPropiedades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngresoPropiedades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngresoPropiedades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IngresoPropiedades.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new IngresoPropiedades().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Genero;
     private javax.swing.JMenuItem GuardarBD;
     private javax.swing.JMenuBar MenuBaseDatos;
     private javax.swing.JButton ModificateTable;
     private javax.swing.JMenu MongolBDMenu;
-    private javax.swing.JLabel NombresLabel;
     private javax.swing.JMenuItem backMenu;
     private javax.swing.JTable dataTable;
     private javax.swing.JButton deleteTable;
-    private javax.swing.JTextField email;
+    private javax.swing.JTextField descripcionText;
+    private javax.swing.JTextField dirreccionText;
+    private javax.swing.JComboBox<String> disponibilidadCombo;
     private javax.swing.JLabel emailLabel;
-    private javax.swing.JLabel errorEmail;
-    private javax.swing.JLabel errorId;
+    private javax.swing.JLabel errorDescripcion;
+    private javax.swing.JLabel errorDirrecion;
+    private javax.swing.JLabel errorMetros;
     private javax.swing.JLabel errorNames;
-    private javax.swing.JLabel errorPhone;
+    private javax.swing.JLabel errorPrecio;
     private javax.swing.JMenu exitMenu;
     private javax.swing.JMenuItem exitMenuAdd;
     private javax.swing.JLabel fondoCampos;
     private javax.swing.JLabel fondoM;
-    private javax.swing.JComboBox<String> generoCombo;
-    private javax.swing.JTextField id;
     private javax.swing.JLabel idLabel;
+    private javax.swing.JLabel idLabel1;
+    private javax.swing.JLabel idLabel2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -676,11 +642,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JComboBox<String> languaje;
-    private javax.swing.JTextField names;
-    private javax.swing.JTextField phone;
+    private javax.swing.JTextField metrosText;
+    private javax.swing.JTextField namesPropiedad;
+    private javax.swing.JLabel nombrePLabel;
+    private javax.swing.JComboBox<String> numeroCuartosCombo;
+    private javax.swing.JTextField precioText;
     private javax.swing.JButton saveTable;
     private javax.swing.JLabel telfLabel;
     private javax.swing.JLabel telfLabel1;
+    private javax.swing.JComboBox<String> ubicacionCombo;
     // End of variables declaration//GEN-END:variables
 }

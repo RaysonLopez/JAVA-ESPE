@@ -1,7 +1,0 @@
-package com.mycompany.P1PracticaEvaLopezRayson;
-
-public class Bibliotecaria extends Persona {
-	
-	private List<String> librosDisponibles;
-	
-}

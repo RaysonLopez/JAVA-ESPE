@@ -2,82 +2,52 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Interface;
+package Login.Vista;
 
-import java.awt.Image;
-import java.util.Locale;
-import java.util.ResourceBundle;
-import javax.swing.Icon;
+
+import ConexionBD.ConexionBDClientes;
+import Login.Controlador.ControladorClienteNuevo;
+import elmain.ImageRenderer;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 
 /**
  *
  * @author Rayson
  */
-public class MenuPrincipal extends javax.swing.JFrame {
-    private DefaultTableModel tableModel;
-    private ResourceBundle bundle;
+public class VistaClienteNuevo extends javax.swing.JFrame {
+    private ControladorClienteNuevo control;
+        private DefaultTableModel tableModel;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public VistaClienteNuevo() {
+        this.control=new ControladorClienteNuevo(this);
+        tableModel=new DefaultTableModel(new Object [][]{}, new String[]{"Imagen","CI","Nombres Completos","Telefono","Email","Genero","Fecha"})
+        {
+            @Override
+            public boolean isCellEditable(int row,int column){
+                return false ;
+            }
+            @Override
+            public Class<?> getColumnClass(int column){
+                if(column ==0){
+                    return ImageIcon.class;
+                }
+                return Object.class;
+            }
+        };
+        ConexionBDClientes conexionBD=new ConexionBDClientes();
+        conexionBD.actualizarTablaMongo(tableModel);
+        tablaMongo.setModel(tableModel);
+        tablaMongo.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tablaMongo.setRowHeight(50);
+        tablaMongo.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
+        
+    }
+    public void InitComponents(){
         initComponents();
-        errorNames.setVisible(false);
-        errorId.setVisible(false);
-        errorPhone.setVisible(false);
-        errorEmail.setVisible(false);
-        
-        Redimensionador(fondoM,"/IngresoClienteNuevo/Menu1.jpeg");
-        tableModel = new DefaultTableModel(
-        new Object[][] {},
-        new String[]{"Nombre y Apellido", "ID", "Telefono", "Email", "Genero"}
-        ) {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false;
-        }
-    };
-    dataTable.setModel(tableModel);
-    }
-        private void Redimensionador(JComponent componente, String ruta) {
-        ImageIcon imagenFondo = cargarImagen(ruta);
-        Icon fondoRedimensionado = redimensionarImagen(imagenFondo, componente.getWidth(), componente.getHeight());
-        aplicarImagen(componente, fondoRedimensionado);
-        centrarVentana();
-        
-    }
-
-    // Cargar la imagen desde la ruta especificada
-    private ImageIcon cargarImagen(String ruta) {
-        return new ImageIcon(getClass().getResource(ruta));
-    }
-
-    // Redimensionar la imagen a las dimensiones especificadas
-    private Icon redimensionarImagen(ImageIcon imagen, int ancho, int alto) {
-        return new ImageIcon(imagen.getImage().getScaledInstance(ancho, alto, Image.SCALE_DEFAULT));
-    }
-
-    // Aplicar la imagen al componente, si es un JLabel
-    private void aplicarImagen(JComponent componente, Icon imagen) {
-        if (componente instanceof JLabel) {
-            ((JLabel) componente).setIcon(imagen);
-        } else if (componente instanceof JButton) {
-            ((JButton) componente).setIcon(imagen);
-        } else {
-            // Manejar otros tipos de componentes si es necesario
-            // Por ejemplo, podrías lanzar una excepción o hacer algo por defecto
-            throw new IllegalArgumentException("El componente debe ser un JLabel o JButton");
-        }
-    }
-
-    // Centrar la ventana relativa a la pantalla
-    private void centrarVentana() {
-        setLocationRelativeTo(null);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -88,116 +58,101 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        dataTable = new javax.swing.JTable();
         NombresLabel = new javax.swing.JLabel();
-        idLabel = new javax.swing.JLabel();
+        anioLabel = new javax.swing.JLabel();
         emailLabel = new javax.swing.JLabel();
         errorNames = new javax.swing.JLabel();
         telfLabel = new javax.swing.JLabel();
-        errorEmail = new javax.swing.JLabel();
+        errorContra = new javax.swing.JLabel();
         errorPhone = new javax.swing.JLabel();
-        errorId = new javax.swing.JLabel();
-        names = new javax.swing.JTextField();
-        id = new javax.swing.JTextField();
-        email = new javax.swing.JTextField();
-        phone = new javax.swing.JTextField();
-        deleteTable = new javax.swing.JButton();
+        errorCedula = new javax.swing.JLabel();
+        namesText = new javax.swing.JTextField();
+        emailText = new javax.swing.JTextField();
+        phoneText = new javax.swing.JTextField();
         saveTable = new javax.swing.JButton();
-        ModificateTable = new javax.swing.JButton();
+        mesCombo = new javax.swing.JComboBox<>();
+        genderLabel = new javax.swing.JLabel();
+        languajeCombo = new javax.swing.JComboBox<>();
+        cedulaText = new javax.swing.JTextField();
+        cedulaLabel = new javax.swing.JLabel();
+        contraLabel = new javax.swing.JLabel();
+        errorEmail = new javax.swing.JLabel();
         generoCombo = new javax.swing.JComboBox<>();
-        telfLabel1 = new javax.swing.JLabel();
+        anioCombo = new javax.swing.JComboBox<>();
+        diaCombo = new javax.swing.JComboBox<>();
+        diaLabel = new javax.swing.JLabel();
+        mesLabel = new javax.swing.JLabel();
+        adjuntarButtom = new javax.swing.JButton();
+        contraText = new javax.swing.JPasswordField();
+        errorImagen = new javax.swing.JLabel();
+        modificateTable = new javax.swing.JButton();
+        deleteTable = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaMongo = new javax.swing.JTable();
+        confirmarEdicion = new javax.swing.JButton();
         fondoCampos = new javax.swing.JLabel();
-        languaje = new javax.swing.JComboBox<>();
-        fondoM = new javax.swing.JLabel();
+        checkModificacion = new javax.swing.JLabel();
         MenuBaseDatos = new javax.swing.JMenuBar();
-        MongolBDMenu = new javax.swing.JMenu();
-        jMenu1 = new javax.swing.JMenu();
-        GuardarBD = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         exitMenu = new javax.swing.JMenu();
-        exitMenuAdd = new javax.swing.JMenuItem();
         backMenu = new javax.swing.JMenuItem();
+        exitMenuAdd = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+
+        jPanel1.setLayout(new java.awt.CardLayout());
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jScrollPane1.setViewportView(dataTable);
-
-        jScrollPane2.setViewportView(jScrollPane1);
-
-        jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 450, 231));
 
         NombresLabel.setText("Nombres Completos");
         jPanel2.add(NombresLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 164, -1));
 
-        idLabel.setText("ID");
-        jPanel2.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 37, -1));
+        anioLabel.setText("Año");
+        jPanel2.add(anioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 170, 100, -1));
 
         emailLabel.setText("Email");
-        jPanel2.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 183, -1));
+        jPanel2.add(emailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 183, -1));
 
         errorNames.setForeground(new java.awt.Color(255, 0, 51));
         errorNames.setText("Error, tiene que tener un nombre y un apellido");
         jPanel2.add(errorNames, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 250, 30));
 
-        telfLabel.setText("Genero");
-        jPanel2.add(telfLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 183, -1));
+        telfLabel.setText("Telefono");
+        jPanel2.add(telfLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 183, -1));
 
-        errorEmail.setForeground(new java.awt.Color(255, 0, 51));
-        errorEmail.setText("Email incorrecto");
-        jPanel2.add(errorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, 183, -1));
+        errorContra.setForeground(new java.awt.Color(255, 0, 51));
+        errorContra.setText("Contraseña incorrecta");
+        jPanel2.add(errorContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 183, -1));
 
         errorPhone.setForeground(new java.awt.Color(255, 0, 51));
         errorPhone.setText("Telefono incorrecto");
-        jPanel2.add(errorPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 183, -1));
+        jPanel2.add(errorPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, 183, -1));
 
-        errorId.setForeground(new java.awt.Color(255, 0, 51));
-        errorId.setText("Id Incorrecto");
-        jPanel2.add(errorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 183, -1));
+        errorCedula.setForeground(new java.awt.Color(255, 0, 51));
+        errorCedula.setText("Cedula Incorrecta");
+        jPanel2.add(errorCedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 183, -1));
 
-        names.addActionListener(new java.awt.event.ActionListener() {
+        namesText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                namesActionPerformed(evt);
+                namesTextActionPerformed(evt);
             }
         });
-        jPanel2.add(names, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 189, -1));
+        jPanel2.add(namesText, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 189, -1));
 
-        id.addActionListener(new java.awt.event.ActionListener() {
+        emailText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idActionPerformed(evt);
+                emailTextActionPerformed(evt);
             }
         });
-        jPanel2.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 183, -1));
+        jPanel2.add(emailText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 100, 183, -1));
 
-        email.addActionListener(new java.awt.event.ActionListener() {
+        phoneText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
+                phoneTextActionPerformed(evt);
             }
         });
-        jPanel2.add(email, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 100, 183, -1));
-
-        phone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                phoneActionPerformed(evt);
-            }
-        });
-        jPanel2.add(phone, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, 183, -1));
-
-        deleteTable.setText("ELIMINAR");
-        deleteTable.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteTableActionPerformed(evt);
-            }
-        });
-        jPanel2.add(deleteTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, -1, -1));
+        jPanel2.add(phoneText, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 30, 183, -1));
 
         saveTable.setText("GUARDAR");
         saveTable.addActionListener(new java.awt.event.ActionListener() {
@@ -207,84 +162,128 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel2.add(saveTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, -1, -1));
 
-        ModificateTable.setText("MODIFICAR");
-        ModificateTable.addActionListener(new java.awt.event.ActionListener() {
+        mesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        mesCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificateTableActionPerformed(evt);
+                mesComboActionPerformed(evt);
             }
         });
-        jPanel2.add(ModificateTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, -1, -1));
+        jPanel2.add(mesCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 90, 30));
 
-        generoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "39 tipos de Gay" }));
+        genderLabel.setText("Genero");
+        jPanel2.add(genderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 183, -1));
+
+        languajeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "English" }));
+        languajeCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                languajeComboActionPerformed(evt);
+            }
+        });
+        jPanel2.add(languajeCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 480, -1, -1));
+
+        cedulaText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cedulaTextActionPerformed(evt);
+            }
+        });
+        jPanel2.add(cedulaText, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 183, -1));
+
+        cedulaLabel.setText("Cedula");
+        jPanel2.add(cedulaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 70, -1));
+
+        contraLabel.setText("Contraseña");
+        jPanel2.add(contraLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, -1));
+
+        errorEmail.setForeground(new java.awt.Color(255, 0, 51));
+        errorEmail.setText("Email incorrecto");
+        jPanel2.add(errorEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 130, 183, -1));
+
+        generoCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hombre", "Mujer", "No Binario", "Otro" }));
         generoCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generoComboActionPerformed(evt);
             }
         });
-        jPanel2.add(generoCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 90, 30));
+        jPanel2.add(generoCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 90, 30));
 
-        telfLabel1.setText("Telefono");
-        jPanel2.add(telfLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 183, -1));
+        anioCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1965", "1966", "1967", "1968", "1969", "1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" }));
+        anioCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                anioComboActionPerformed(evt);
+            }
+        });
+        jPanel2.add(anioCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 90, 30));
+
+        diaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        diaCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diaComboActionPerformed(evt);
+            }
+        });
+        jPanel2.add(diaCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 90, 30));
+
+        diaLabel.setText("Dia");
+        jPanel2.add(diaLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, 100, -1));
+
+        mesLabel.setText("Mes");
+        jPanel2.add(mesLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, 100, -1));
+
+        adjuntarButtom.setText("Adjuntar Imagen de Perfil");
+        adjuntarButtom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adjuntarButtomActionPerformed(evt);
+            }
+        });
+        jPanel2.add(adjuntarButtom, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, -1, -1));
+        jPanel2.add(contraText, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, -1));
+
+        errorImagen.setText("<html>\n<p>\n  Seleccione una imagen con las siguientes características:<br>\n  Formato: JPG, JPEG, PNG<br>\n  Tamaño: 413 x 531 píxeles\n</p>\n</html>");
+        jPanel2.add(errorImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, 230, 60));
+
+        modificateTable.setText("MODIFICAR");
+        modificateTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificateTableActionPerformed(evt);
+            }
+        });
+        jPanel2.add(modificateTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 480, -1, -1));
+
+        deleteTable.setText("ELIMINAR");
+        deleteTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteTableActionPerformed(evt);
+            }
+        });
+        jPanel2.add(deleteTable, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, -1, -1));
+
+        tablaMongo.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaMongo);
+
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 940, 230));
+
+        confirmarEdicion.setText("Confirmar Edicion");
+        jPanel2.add(confirmarEdicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 480, -1, -1));
 
         fondoCampos.setBackground(new java.awt.Color(255, 255, 255));
         fondoCampos.setOpaque(true);
-        jPanel2.add(fondoCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 680, 150));
+        jPanel2.add(fondoCampos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 680, 220));
+        jPanel2.add(checkModificacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 1060, 590));
 
-        languaje.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Español", "English" }));
-        languaje.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                languajeActionPerformed(evt);
-            }
-        });
-        jPanel2.add(languaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, -1, -1));
-        jPanel2.add(fondoM, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -30, 900, 580));
+        jPanel1.add(jPanel2, "card2");
 
         MenuBaseDatos.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
 
-        MongolBDMenu.setText("MongolBD");
-
-        jMenu1.setText("Guardar");
-
-        GuardarBD.setText("Guardar En BD");
-        GuardarBD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarBDActionPerformed(evt);
-            }
-        });
-        jMenu1.add(GuardarBD);
-
-        MongolBDMenu.add(jMenu1);
-
-        jMenu2.setText("Conectar");
-
-        jMenuItem2.setText("Conectar BD");
-        jMenu2.add(jMenuItem2);
-
-        MongolBDMenu.add(jMenu2);
-
-        MenuBaseDatos.add(MongolBDMenu);
-
-        jMenu3.setText("Buscar");
-
-        jMenuItem1.setText("Buscar");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem1);
-
-        MenuBaseDatos.add(jMenu3);
-
         exitMenu.setText("Exit");
-
-        exitMenuAdd.setText("Salir");
-        exitMenuAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitMenuAddActionPerformed(evt);
-            }
-        });
-        exitMenu.add(exitMenuAdd);
 
         backMenu.setText("Regresar");
         backMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -293,6 +292,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         exitMenu.add(backMenu);
+
+        exitMenuAdd.setText("Salir");
+        exitMenuAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitMenuAddActionPerformed(evt);
+            }
+        });
+        exitMenu.add(exitMenuAdd);
 
         MenuBaseDatos.add(exitMenu);
 
@@ -303,313 +310,80 @@ public class MenuPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 547, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveTableActionPerformed
-    // Obtener los datos ingresados
-    String nombres = names.getText();
-    String ID = id.getText();
-    String telf = phone.getText();
-    String mail = email.getText();
-    String genero = generoCombo.getSelectedItem().toString();
-    // Validar los campos
-    boolean valid = true;
-    
-    if (!nombres.matches("[A-Za-z]+\\s[A-Za-z]+")) {
-        errorNames.setText("Error: tiene que tener un nombre y un apellido");
-        errorNames.setVisible(true);
-        valid = false;
-    } else {
-        errorNames.setVisible(false);
-    }
 
-    if (!ID.matches("\\d{10}")) {
-        errorId.setText("Error: el ID debe contener 10 dígitos");
-        errorId.setVisible(true);
-        valid = false;
-    } else {
-        errorId.setVisible(false);
-    }
-
-    if (!telf.matches("\\d{10}")) {
-        errorPhone.setText("Error: el teléfono debe contener 10 dígitos");
-        errorPhone.setVisible(true);
-        valid = false;
-    } else {
-        errorPhone.setVisible(false);
-    }
-
-    if (!mail.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-        errorEmail.setText("Error: email incorrecto");
-        errorEmail.setVisible(true);
-        valid = false;
-    } else {
-        errorEmail.setVisible(false);
-    }
-    // Si todos los campos son válidos, agregar a la tabla
-// Si todos los campos son válidos, agregar a la tabla
-    if (valid) {
-        DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-        int rowCount = tableModel.getRowCount();
-        boolean duplicate = false;
-
-        for (int i = 0; i < rowCount; i++) {
-            String existingID = tableModel.getValueAt(i, 1).toString();
-            String existingPhone = tableModel.getValueAt(i, 2).toString();
-            String existingEmail = tableModel.getValueAt(i, 3).toString();
-
-            if (ID.equals(existingID) || telf.equals(existingPhone) || mail.equals(existingEmail)) {
-                duplicate = true;
-                break;
-            }
-        }
-
-        if (duplicate) {
-            JOptionPane.showMessageDialog(this, "Error: ID, teléfono o email ya existen en la tabla.", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            String[] camposT = {nombres, ID, telf, mail, genero};
-            tableModel.addRow(camposT);
-
-            // Limpiar los campos de entrada
-            names.setText("");
-            id.setText("");
-            phone.setText("");
-            email.setText("");
-            generoCombo.setSelectedIndex(0); // Reiniciar el combo box de género
-        }
-    }
     }//GEN-LAST:event_saveTableActionPerformed
 
-    private void namesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namesActionPerformed
-       
-    }//GEN-LAST:event_namesActionPerformed
-
-    private void deleteTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTableActionPerformed
-    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    int[] selectedRows = dataTable.getSelectedRows();
-
-    // Eliminar las filas seleccionadas del modelo de la tabla
-    for (int i = selectedRows.length - 1; i >= 0; i--) {
-        tableModel.removeRow(selectedRows[i]);
-    }
-    }//GEN-LAST:event_deleteTableActionPerformed
-
-    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_idActionPerformed
-
-    private void phoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_phoneActionPerformed
-
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
-
-    private void ModificateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificateTableActionPerformed
-    // Obtener el modelo de la tabla
-    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    
-    // Obtener la fila seleccionada
-    int selectedRow = dataTable.getSelectedRow();
-    
-    // Verificar si se ha seleccionado una fila
-    if (selectedRow >= 0) {
-        // Obtener los valores de la fila seleccionada
-        String nombres = (String) tableModel.getValueAt(selectedRow, 0);
-        String ID = (String) tableModel.getValueAt(selectedRow, 1);
-        String telf = (String) tableModel.getValueAt(selectedRow, 2);
-        String mail = (String) tableModel.getValueAt(selectedRow, 3);
-
-        // Establecer los valores en los campos de texto
-        names.setText(nombres);
-        id.setText(ID);
-        phone.setText(telf);
-        email.setText(mail);
-
-        // Confirmar la modificación
-        int confirm = JOptionPane.showConfirmDialog(this, "¿Desea guardar los cambios?", "Confirmar Modificación", JOptionPane.YES_NO_OPTION);
+    private void namesTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_namesTextActionPerformed
         
-        if (confirm == JOptionPane.YES_OPTION) {
-            // Validar los campos
-            boolean valid = true;
+    }//GEN-LAST:event_namesTextActionPerformed
 
-            if (!nombres.matches("[A-Za-z]+\\s[A-Za-z]+")) {
-                errorNames.setText("Error: tiene que tener un nombre y un apellido");
-                errorNames.setVisible(true);
-                valid = false;
-            } else {
-                errorNames.setVisible(false);
-            }
+    private void phoneTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_phoneTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_phoneTextActionPerformed
 
-            if (!ID.matches("\\d{10}")) {
-                errorId.setText("Error: el ID debe contener 10 dígitos");
-                errorId.setVisible(true);
-                valid = false;
-            } else {
-                errorId.setVisible(false);
-            }
-
-            if (!telf.matches("\\d{10}")) {
-                errorPhone.setText("Error: el teléfono debe contener 10 dígitos");
-                errorPhone.setVisible(true);
-                valid = false;
-            } else {
-                errorPhone.setVisible(false);
-            }
-
-            if (!mail.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
-                errorEmail.setText("Error: email incorrecto");
-                errorEmail.setVisible(true);
-                valid = false;
-            } else {
-                errorEmail.setVisible(false);
-            }
-
-            // Si todos los campos son válidos, actualizar la fila
-            if (valid) {
-                tableModel.setValueAt(nombres, selectedRow, 0);
-                tableModel.setValueAt(ID, selectedRow, 1);
-                tableModel.setValueAt(telf, selectedRow, 2);
-                tableModel.setValueAt(mail, selectedRow, 3);
-                
-                // Limpiar los campos de entrada
-                names.setText("");
-                id.setText("");
-                phone.setText("");
-                email.setText("");
-
-                JOptionPane.showMessageDialog(this, "Modificación exitosa.", "Modificar", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-    } else {
-        JOptionPane.showMessageDialog(this, "Seleccione una fila para modificar.", "Modificar", JOptionPane.WARNING_MESSAGE);
-    }
-    }//GEN-LAST:event_ModificateTableActionPerformed
-
-    private void GuardarBDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarBDActionPerformed
-    // Obtener el modelo de la tabla
-    DefaultTableModel tableModel = (DefaultTableModel) dataTable.getModel();
-    
-    // Crear instancia de MongoDBManager (asegúrate de importar la clase correcta)
-    ConexionBD.ConexionBD manager = new ConexionBD.ConexionBD();
-    
-    // Iterar sobre cada fila de la tabla
-    for (int i = 0; i < tableModel.getRowCount(); i++) {
-        // Obtener los datos de la fila actual
-        String nombres = (String) tableModel.getValueAt(i, 0);
-        String ID = (String) tableModel.getValueAt(i, 1);
-        String telf = (String) tableModel.getValueAt(i, 2);
-        String mail = (String) tableModel.getValueAt(i, 3);
-        
-        // Guardar los datos en MongoDB
-        String[] datos = {nombres, ID, telf, mail};
-        manager.guardarDatos(datos);
-    }
-    
-    // Eliminar todas las filas de la tabla
-    tableModel.setRowCount(0); // Establece el número de filas a cero
-    
-    // Cerrar la conexión con MongoDB al finalizar
-    manager.cerrarConexion();
-    
-    // Opcional: Mostrar un mensaje de confirmación
-    JOptionPane.showMessageDialog(this, "Datos guardados en MongoDB correctamente.", "Guardar en MongoDB", JOptionPane.INFORMATION_MESSAGE);
-    }//GEN-LAST:event_GuardarBDActionPerformed
+    private void emailTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailTextActionPerformed
 
     private void exitMenuAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuAddActionPerformed
-        int confirm = JOptionPane.showOptionDialog(
-            this,
-            "¿Estás seguro de que quieres salir?",
-            "Confirmación de salida",
-            JOptionPane.YES_NO_OPTION,
-            JOptionPane.QUESTION_MESSAGE,
-            null,
-            new Object[]{"Sí", "No"},
-            "No"
-        );
 
-        if (confirm == JOptionPane.YES_OPTION) {
-            System.exit(0);
-        }
     }//GEN-LAST:event_exitMenuAddActionPerformed
 
     private void backMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backMenuActionPerformed
-               // Ocultar la ventana actual
-        this.setVisible(false);
-        // Crear y mostrar la ventana de login
-        new Login().setVisible(true);
+
     }//GEN-LAST:event_backMenuActionPerformed
 
-    private void languajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languajeActionPerformed
-    String selectedLanguage = (String) languaje.getSelectedItem();
-    if ("Español".equals(selectedLanguage)) {
-        // Configurar los textos en español
-        NombresLabel.setText("Nombre y Apellido");
-        idLabel.setText("ID");
-        emailLabel.setText("Email");
-        telfLabel.setText("Teléfono");
-        telfLabel1.setText("Género");
-        errorNames.setText("Error, tiene que tener un nombre y un apellido");
-        errorId.setText("Id Incorrecto");
-        errorPhone.setText("Teléfono incorrecto");
-        errorEmail.setText("Email incorrecto");
-        saveTable.setText("GUARDAR");
-        deleteTable.setText("ELIMINAR");
-        ModificateTable.setText("MODIFICAR");
-        GuardarBD.setText("Guardar En BD");
-        exitMenuAdd.setText("Salir");
-        backMenu.setText("Regresar");
-        MongolBDMenu.setText("MongolBD");
-        jMenu1.setText("Guardar");
-        jMenu2.setText("Conectar");
-        jMenu3.setText("Buscar");
-        exitMenu.setText("Salir");
-    } else if ("English".equals(selectedLanguage)) {
-        // Configurar los textos en inglés
-        NombresLabel.setText("Full Name");
-        idLabel.setText("ID");
-        emailLabel.setText("Email");
-        telfLabel.setText("Phone");
-        telfLabel1.setText("Gender");
-        errorNames.setText("Error: must have a first and last name");
-        errorId.setText("Incorrect ID");
-        errorPhone.setText("Incorrect phone");
-        errorEmail.setText("Incorrect email");
-        saveTable.setText("SAVE");
-        deleteTable.setText("DELETE");
-        ModificateTable.setText("MODIFY");
-        GuardarBD.setText("Save In BD");
-        exitMenuAdd.setText("Exit");
-        backMenu.setText("Back");
-        MongolBDMenu.setText("MongolBD");
-        jMenu1.setText("Save");
-        jMenu2.setText("Connect");
-        jMenu3.setText("Search");
-        exitMenu.setText("Exit");
-    }
+    private void languajeComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_languajeComboActionPerformed
 
-    // Forzar la actualización de la interfaz
-    this.revalidate();
-    this.repaint();
-    }//GEN-LAST:event_languajeActionPerformed
+    }//GEN-LAST:event_languajeComboActionPerformed
+
+    private void mesComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mesComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mesComboActionPerformed
+
+    private void cedulaTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cedulaTextActionPerformed
 
     private void generoComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generoComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_generoComboActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void anioComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anioComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_anioComboActionPerformed
+
+    private void diaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diaComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_diaComboActionPerformed
+
+    private void adjuntarButtomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adjuntarButtomActionPerformed
+
+    }//GEN-LAST:event_adjuntarButtomActionPerformed
+
+    private void modificateTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificateTableActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modificateTableActionPerformed
+
+    private void deleteTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteTableActionPerformed
+       
+    }//GEN-LAST:event_deleteTableActionPerformed
 
     /**
      * @param args the command line arguments
@@ -628,59 +402,67 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaClienteNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaClienteNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaClienteNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaClienteNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new VistaClienteNuevo().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem GuardarBD;
     private javax.swing.JMenuBar MenuBaseDatos;
-    private javax.swing.JButton ModificateTable;
-    private javax.swing.JMenu MongolBDMenu;
-    private javax.swing.JLabel NombresLabel;
-    private javax.swing.JMenuItem backMenu;
-    private javax.swing.JTable dataTable;
-    private javax.swing.JButton deleteTable;
-    private javax.swing.JTextField email;
-    private javax.swing.JLabel emailLabel;
-    private javax.swing.JLabel errorEmail;
-    private javax.swing.JLabel errorId;
-    private javax.swing.JLabel errorNames;
-    private javax.swing.JLabel errorPhone;
-    private javax.swing.JMenu exitMenu;
-    private javax.swing.JMenuItem exitMenuAdd;
+    public javax.swing.JLabel NombresLabel;
+    public javax.swing.JButton adjuntarButtom;
+    public javax.swing.JComboBox<String> anioCombo;
+    public javax.swing.JLabel anioLabel;
+    public javax.swing.JMenuItem backMenu;
+    public javax.swing.JLabel cedulaLabel;
+    public javax.swing.JTextField cedulaText;
+    public javax.swing.JLabel checkModificacion;
+    public javax.swing.JButton confirmarEdicion;
+    public javax.swing.JLabel contraLabel;
+    public javax.swing.JPasswordField contraText;
+    public javax.swing.JButton deleteTable;
+    public javax.swing.JComboBox<String> diaCombo;
+    public javax.swing.JLabel diaLabel;
+    public javax.swing.JLabel emailLabel;
+    public javax.swing.JTextField emailText;
+    public javax.swing.JLabel errorCedula;
+    public javax.swing.JLabel errorContra;
+    public javax.swing.JLabel errorEmail;
+    public javax.swing.JLabel errorImagen;
+    public javax.swing.JLabel errorNames;
+    public javax.swing.JLabel errorPhone;
+    public javax.swing.JMenu exitMenu;
+    public javax.swing.JMenuItem exitMenuAdd;
     private javax.swing.JLabel fondoCampos;
-    private javax.swing.JLabel fondoM;
-    private javax.swing.JComboBox<String> generoCombo;
-    private javax.swing.JTextField id;
-    private javax.swing.JLabel idLabel;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    public javax.swing.JLabel genderLabel;
+    public javax.swing.JComboBox<String> generoCombo;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JComboBox<String> languaje;
-    private javax.swing.JTextField names;
-    private javax.swing.JTextField phone;
-    private javax.swing.JButton saveTable;
-    private javax.swing.JLabel telfLabel;
-    private javax.swing.JLabel telfLabel1;
+    public javax.swing.JComboBox<String> languajeCombo;
+    public javax.swing.JComboBox<String> mesCombo;
+    public javax.swing.JLabel mesLabel;
+    public javax.swing.JButton modificateTable;
+    public javax.swing.JTextField namesText;
+    public javax.swing.JTextField phoneText;
+    public javax.swing.JButton saveTable;
+    public static javax.swing.JTable tablaMongo;
+    public javax.swing.JLabel telfLabel;
     // End of variables declaration//GEN-END:variables
 }
