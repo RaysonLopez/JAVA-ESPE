@@ -46,11 +46,14 @@ public class Controlador {
         vista.filtrar.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                filtrar();
+                
             }
 
             @Override
             public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                filtrar();
+                }
             }
 
             @Override
@@ -92,11 +95,16 @@ public class Controlador {
          }
     }
     public void filtrar(){
-       DefaultTableModel tableModel=new DefaultTableModel();
        String text=vista.filtrar.getText();
        TableRowSorter<TableModel>sorter=new TableRowSorter<>((TableModel)vista.tableData.getModel());
        vista.tableData.setRowSorter(sorter);
-       sorter.setRowFilter(RowFilter.regexFilter(text, 0));
+       RowFilter<TableModel,Object>filter=RowFilter.regexFilter(text, 0);
+       sorter.setRowFilter(filter);
+       //Verificar si el filtro encontro algun registro
+       int viewRowCount=sorter.getViewRowCount();
+       if(viewRowCount==0){
+           JOptionPane.showMessageDialog(vista, "No se encontraros registros que estas buscando","Error",JOptionPane.ERROR_MESSAGE);
+       }
     }
     public void actualizar(){
         int selectedRow=vista.tableData.getSelectedRow();
