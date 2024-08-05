@@ -106,6 +106,7 @@ public class Controlador {
             DefaultTableModel tableModel=(DefaultTableModel)vista.tableData.getModel();
             String cedula=vista.cedulaText.getText();
             tableModel.setValueAt(cedula, selectedItem, 0);
+            
         }
     }
     private String getGeneroSeleccionado(){

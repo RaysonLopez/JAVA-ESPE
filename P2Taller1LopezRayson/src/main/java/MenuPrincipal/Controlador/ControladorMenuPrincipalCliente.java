@@ -7,7 +7,6 @@ package MenuPrincipal.Controlador;
 import Interface.ViewCliente.BuscarPropiedades;
 import Interface.ViewCliente.PanelCliente;
 import Login.Vista.VistaLogin;
-import MenuPrincipal.Model.ModeloMenuPrincipal;
 import MenuPrincipal.View.MenuPrincipalCliente;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;

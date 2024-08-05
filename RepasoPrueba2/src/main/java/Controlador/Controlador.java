@@ -176,7 +176,7 @@ public class Controlador {
             if(cedula!=null&&!cedula.isEmpty()){
                 tableModel.removeRow(selectedRow);
                 conexion.eliminarDatos(cedula);
-            }else{
+            }else{  
                 JOptionPane.showConfirmDialog(vista,"Selecciona una fila para eliminar");
             }
             
